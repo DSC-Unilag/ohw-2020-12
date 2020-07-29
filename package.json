@@ -2,13 +2,15 @@
   "name": "recipe-saver",
   "version": "1.0.0",
   "description": "An app where you can save your recipes, view other recipes and star your favorite recipe",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
+    "start": "tsc && node dist/server.js",
+    "start:watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DSC-Unilag/ohw-2020-12.git"
+    "url": "git+https://github.com/Olusamimaths/ohw-2020-12.git"
   },
   "keywords": [
     "recipe-saver",
@@ -18,11 +20,32 @@
   "author": "Olusola Samuel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DSC-Unilag/ohw-2020-12/issues"
+    "url": "https://github.com/Olusamimaths/ohw-2020-12/issues"
   },
-  "homepage": "https://github.com/DSC-Unilag/ohw-2020-12#readme",
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm start",
+    "ext": "ts"
+  },
+  "homepage": "https://github.com/Olusamimaths/ohw-2020-12#readme",
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.7",
+    "@types/node": "^14.0.27",
+    "nodemon": "^2.0.4",
     "tslint": "^6.1.2",
     "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
   }
 }
