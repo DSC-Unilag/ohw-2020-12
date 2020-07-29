@@ -1,0 +1,28 @@
+{
+  "name": "recipe-saver",
+  "version": "1.0.0",
+  "description": "An app where you can save your recipes, view other recipes and star your favorite recipe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSC-Unilag/ohw-2020-12.git"
+  },
+  "keywords": [
+    "recipe-saver",
+    "node",
+    "typescript"
+  ],
+  "author": "Olusola Samuel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DSC-Unilag/ohw-2020-12/issues"
+  },
+  "homepage": "https://github.com/DSC-Unilag/ohw-2020-12#readme",
+  "devDependencies": {
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.7"
+  }
+}
