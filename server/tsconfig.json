@@ -7,8 +7,10 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "allowJs": true
+    "allowJs": true,
+    "typeRoots": ["@types", "./node_modules/@types"]
   },
   "lib": ["es2015"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "files": ["@types/custom.d.ts"]
 }

@@ -11,7 +11,7 @@ const login = async (req: Request, res: Response) => {
   if (user) {
     if (user.comparePassword(password)) {
       const token = user.generateToken();
-
+      user.password = undefined;
       return res.status(200).json({
         status: 200,
         user,
@@ -60,7 +60,7 @@ const register = async (req: Request, res: Response) => {
 
   const token = user.generateToken();
   // don't expose thy user
-  delete user.password;
+  user.password = undefined;
 
   return res.status(200).json({
     status: 200,

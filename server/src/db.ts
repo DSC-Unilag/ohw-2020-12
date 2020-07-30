@@ -9,6 +9,7 @@ const connectToDB = () =>
     .connect(connectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     })
     .then(() => console.log("Connected to database successfully."))
     .catch((e) => console.log("Error: ", e));

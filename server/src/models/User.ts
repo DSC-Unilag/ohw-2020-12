@@ -11,6 +11,8 @@ export interface UserDocument extends mongoose.Document {
   username: string;
   email: string;
   password: string;
+  saved_recipes?: [{}];
+  favorite_recipes?: [{}];
   createdAt?: string;
   emailConfirmedAt?: string;
   emailConfirmCode?: string;
@@ -27,6 +29,18 @@ const UserSchema: mongoose.Schema = new Schema({
   },
   emailConfirmedAt: Date,
   emailConfirmCode: String,
+  saved_recipes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  ],
+  favorite_recipes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  ],
 });
 
 // before saving a new user document, hash the password

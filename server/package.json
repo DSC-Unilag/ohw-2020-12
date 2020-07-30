@@ -35,6 +35,9 @@
     "exec": "npm start",
     "ext": "ts"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "homepage": "https://github.com/Olusamimaths/ohw-2020-12#readme",
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",

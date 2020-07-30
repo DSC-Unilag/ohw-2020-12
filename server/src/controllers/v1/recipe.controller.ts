@@ -1,5 +1,4 @@
 import Recipe, { RecipeDocument } from "../../models/Recipe";
-import Review, { ReviewDocument } from "../../models/Review";
 import { Request, Response } from "express";
 import { dataUri } from "../../middleware/multer";
 import { uploader, cloudinaryConfig } from "../../config/cloudinary.config";
@@ -54,6 +53,7 @@ const create = async (req: Request, res: Response) => {
  * @param req - Request object
  * @param res - Response object
  */
+
 const getAll = async (req: Request, res: Response) => {
   const recipes: RecipeDocument[] = await Recipe.find({});
 
@@ -95,40 +95,4 @@ const getOne = (req: Request, res: Response) => {
     });
 };
 
-/**
- * Given a recipe id, this method creates a review for it
- * @param req - Request object
- * @param res - Response object
- */
-const createReview = async (req: Request, res: Response) => {
-  const { stars, review } = req.body;
-
-  const id: string = req.params.id;
-  // first create the review
-  const createdReview: ReviewDocument = await Review.create({ stars, review });
-
-  if (createdReview) {
-    // find the recipe
-    const updatedRecipe: RecipeDocument = await Recipe.findOneAndUpdate(
-      { _id: id },
-      { $push: { reviews: createdReview._id } },
-      // {new: true} to return the updated document, by default it returns the original
-      { new: true }
-    );
-
-    // return the updated recipe
-    if (updatedRecipe) {
-      return res.status(200).json({
-        status: 200,
-        updatedRecipe,
-        message: "Successfully reviewed recipe.",
-      });
-    }
-  }
-
-  return res.status(500).json({
-    status: 500,
-    error: "Something went wrong. Could not review recipe.",
-  });
-};
-export default { create, getAll, getOne, createReview };
+export default { create, getAll, getOne };
