@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   google_fonts:
   flutter_svg:
+  fluttertoast:
   hexcolor:
   cloud_firestore:
   firebase_auth:
