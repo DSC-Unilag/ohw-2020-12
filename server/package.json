@@ -4,7 +4,8 @@
   "description": "An app where you can save your recipes, view other recipes and star your favorite recipe",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/server.js",
+    "start": "node dist/server.js",
+    "build": "tsc",
     "start:watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
