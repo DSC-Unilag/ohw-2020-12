@@ -20,7 +20,7 @@ class StartUpViewModel extends BaseModel{
 
     if(hasLoggedInUser){
       navigationService.pop();
-      _navigationService.navigateTo(HomePageVieRoute);
+      _navigationService.navigateTo(HomeViewRoute);
     }else{
       navigationService.pop();
       _navigationService.navigateTo(HomePageVieRoute);
