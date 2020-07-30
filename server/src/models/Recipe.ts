@@ -4,16 +4,16 @@ const { Schema } = mongoose;
 
 export interface RecipeDocument extends mongoose.Document {
   title: string;
-  image_url: string;
   instructions: string;
   duration: number;
   stars?: number;
   createdAt?: string;
+  image?: string;
 }
 
 const RecipeSchema: mongoose.Schema = new Schema({
   title: String,
-  image_url: String,
+  image: String,
   createdAt: {
     type: Date,
     default: Date.now,
