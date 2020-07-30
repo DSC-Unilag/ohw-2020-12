@@ -6,6 +6,7 @@ export interface RecipeDocument extends mongoose.Document {
   title: string;
   instructions: string;
   duration: number;
+  category: string;
   createdAt?: string;
   image?: string;
   ingredient?: [
@@ -37,6 +38,7 @@ const RecipeSchema: mongoose.Schema = new Schema({
       ref: "Review",
     },
   ],
+  category: String,
 });
 
 const Recipe: mongoose.Model<RecipeDocument> = mongoose.model(

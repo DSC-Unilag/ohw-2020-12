@@ -1,7 +1,8 @@
 import Recipe, { RecipeDocument } from "../../models/Recipe";
 import { Request, Response } from "express";
 import { dataUri } from "../../middleware/multer";
-import { uploader, cloudinaryConfig } from "../../config/cloudinary.config";
+import { uploader } from "../../config/cloudinary.config";
+import Category from "../../models/Category";
 
 /**
  * This function creates a new recipe
@@ -13,10 +14,12 @@ const create = async (req: Request, res: Response) => {
     title,
     instructions,
     duration,
+    category,
   }: {
     title: string;
     instructions: string;
     duration: number;
+    category: string;
   } = req.body;
 
   let image: string;
@@ -32,7 +35,27 @@ const create = async (req: Request, res: Response) => {
     instructions,
     duration,
     image,
+    category,
   });
+
+  if (recipe) {
+    try {
+      const createdCategory = await Category.findOneAndUpdate(
+        { title: category },
+        { $push: { recipes: recipe._id } },
+        { new: true, upsert: true }
+      );
+      console.log("category: ", createdCategory);
+      if (!createdCategory) {
+        res.status(500).json({
+          status: 500,
+          error: "Something went wrong. Could not add recipe to the category.",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   if (recipe && image) {
     return res.status(200).json({

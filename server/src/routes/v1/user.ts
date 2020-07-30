@@ -7,7 +7,7 @@ const userRouter: Router = express.Router();
 userRouter.post("/save/:id", checkAuth, userController.saveRecipe);
 userRouter.post("/favorite/:id", checkAuth, userController.favorite);
 userRouter.post("/review/:id", checkAuth, userController.createReview);
-userRouter.get("/all", userController.getAll);
-userRouter.get("/:id", userController.getOne);
+// userRouter.get("/all", userController.getAll);
+// userRouter.get("/:id", userController.getOne);
 
 export default userRouter;
