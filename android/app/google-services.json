@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "892382136001",
+    "firebase_url": "https://recipe-saver-c289b.firebaseio.com",
+    "project_id": "recipe-saver-c289b",
+    "storage_bucket": "recipe-saver-c289b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892382136001:android:dee6965bfc293ee3e63640",
+        "android_client_info": {
+          "package_name": "com.ohw2020.recipesaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "892382136001-vjjgs2d147gjaoehjl07t5ff3d2ri43q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO3416byFhXS67Ca8qID3N7tAom801Phc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "892382136001-vjjgs2d147gjaoehjl07t5ff3d2ri43q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
