@@ -9,7 +9,6 @@ import Category, { CategoryDocument } from "../../models/Category";
 
 const getAll = async (req: Request, res: Response) => {
   const categories: CategoryDocument[] = await Category.find({});
-  console.log(categories);
 
   if (categories) {
     return res.status(200).json({
@@ -32,6 +31,7 @@ const getAll = async (req: Request, res: Response) => {
  */
 const getOne = (req: Request, res: Response) => {
   const id: string = req.params.id;
+
   Category.findOne({ _id: id })
     .populate("recipes")
     .then((category) => {
@@ -42,6 +42,7 @@ const getOne = (req: Request, res: Response) => {
       });
     })
     .catch((e) => {
+      console.log(e);
       return res.status(500).json({
         status: 500,
         error:

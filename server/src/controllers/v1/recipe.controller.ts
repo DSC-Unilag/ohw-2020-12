@@ -45,7 +45,6 @@ const create = async (req: Request, res: Response) => {
         { $push: { recipes: recipe._id } },
         { new: true, upsert: true }
       );
-      console.log("category: ", createdCategory);
       if (!createdCategory) {
         res.status(500).json({
           status: 500,

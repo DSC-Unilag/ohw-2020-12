@@ -15,7 +15,7 @@ const CategorySchema: mongoose.Schema = new Schema({
   recipes: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Recipes",
+      ref: "Recipe",
     },
   ],
 });
