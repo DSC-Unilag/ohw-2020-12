@@ -1,12 +1,13 @@
-import bcrypt from "bcrypt";
 import User, { UserDocument } from "../../models/User";
 import { Request, Response } from "express";
 
-export const login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
+  // have they registered?
   const user: UserDocument = await User.findOne({ email });
 
+  // yes? check their password and generate a token if password is correct
   if (user) {
     if (user.comparePassword(password)) {
       const token = user.generateToken();
@@ -18,17 +19,30 @@ export const login = async (req: Request, res: Response) => {
       });
     }
   }
+  // did not register | did not give correct password
   return res.status(400).json({
     status: 400,
     error: "These credentials do not match our records.",
   });
 };
 
-export const register = async (req: Request, res: Response) => {
-  const { name, username, email, password } = req.body;
+const register = async (req: Request, res: Response) => {
+  // request to touch my body
+  const {
+    name,
+    username,
+    email,
+    password,
+  }: {
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+  } = req.body;
 
   const userExists: UserDocument = await User.findOne({ email });
 
+  // registered before? What are they looking for again?
   if (userExists) {
     return res.status(400).json({
       status: 400,
@@ -36,7 +50,8 @@ export const register = async (req: Request, res: Response) => {
     });
   }
 
-  const user = await User.create({
+  // fresh user here!
+  const user: UserDocument = await User.create({
     name,
     username,
     email,
@@ -44,6 +59,7 @@ export const register = async (req: Request, res: Response) => {
   });
 
   const token = user.generateToken();
+  // don't expose thy user
   delete user.password;
 
   return res.status(200).json({
@@ -52,4 +68,9 @@ export const register = async (req: Request, res: Response) => {
     user,
     message: "Successfully created a new account.",
   });
+};
+
+export default {
+  login,
+  register,
 };
