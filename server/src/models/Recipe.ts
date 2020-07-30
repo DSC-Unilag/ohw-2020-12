@@ -6,9 +6,15 @@ export interface RecipeDocument extends mongoose.Document {
   title: string;
   instructions: string;
   duration: number;
-  stars?: number;
   createdAt?: string;
   image?: string;
+  ingredient?: [
+    {
+      type: string;
+      quantity: string;
+    }
+  ];
+  review?: [{}];
 }
 
 const RecipeSchema: mongoose.Schema = new Schema({
@@ -19,7 +25,18 @@ const RecipeSchema: mongoose.Schema = new Schema({
     default: Date.now,
   },
   instructions: String,
-  stars: Number,
+  ingredients: [
+    {
+      type: String,
+      ingredient: String,
+    },
+  ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 const Recipe: mongoose.Model<RecipeDocument> = mongoose.model(
