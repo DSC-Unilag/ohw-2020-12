@@ -35,6 +35,11 @@ var kDetailtextStyle = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   fontSize: 16,
 );
+var kDetailtextStyle2 = GoogleFonts.poppins(
+    fontStyle: FontStyle.normal,
+    fontWeight: FontWeight.w600,
+    fontSize: 24,
+    color: Hexcolor('#333333'));
 
 var kInputBoxDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
@@ -70,4 +75,21 @@ var kInputBoxDecoration2 = InputDecoration(
         width: 1,
       )),
   filled: true,
+);
+
+var kInputBoxDecoration3 = InputDecoration(
+  focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4),
+      borderSide: BorderSide(
+        color: Colors.grey,
+        width: 2,
+      )),
+  enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(4),
+      borderSide: BorderSide(
+        color: Colors.grey,
+        width: 1,
+      )),
+  filled: true,
+  fillColor: Colors.white,
 );

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:recipesaver/Screen/addRecipie.dart';
+import 'package:recipesaver/Screen/infoPage.dart';
+import 'package:recipesaver/Screen/profileScreen.dart';
 import 'package:recipesaver/router.dart';
 import 'package:recipesaver/Screen/startup_view.dart';
 import 'package:recipesaver/services/navigation_service.dart';
 
+import 'Screen/home.dart';
 import 'Screen/homePage.dart';
 import 'locator.dart';
 
@@ -17,9 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Recipe Saver',
       navigatorKey: locator<NavigationService>().navigationKey,
-      home: StartUpView(),
+      home: InfoPage(),
       onGenerateRoute: generateRoute,
     );
   }
 }
-
