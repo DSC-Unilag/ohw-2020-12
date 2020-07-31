@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../constants.dart';
 
 Widget fromRecipiePageCard(
-    String image, String title, String about, String author) {
+    {String image, String title, String about, String author, Function onPressed}) {
   return Container(
     padding: EdgeInsets.only(right: 20),
     margin: EdgeInsets.only(bottom: 10),
@@ -17,7 +18,7 @@ Widget fromRecipiePageCard(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage(image),
+              backgroundImage: NetworkImage(image)
             ),
           ),
           SizedBox(
@@ -61,7 +62,7 @@ Widget fromRecipiePageCard(
                   ),
                   IconButton(
                       icon: SvgPicture.asset('assets/images/saved.svg'),
-                      onPressed: () {})
+                      onPressed: onPressed)
                 ],
               ),
             ],

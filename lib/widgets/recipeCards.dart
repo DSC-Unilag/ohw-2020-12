@@ -21,7 +21,7 @@ Widget recipieCards(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(14),
             ),
-            child: Image.asset(
+            child: boximage == null ? Container() : Image.network(
               boximage,
               height: height * 0.58,
               fit: BoxFit.fill,

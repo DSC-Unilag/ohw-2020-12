@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                         : _selectedIndex == 1
                             ? RecipieScreen()
                             : _selectedIndex == 2
-                                ? Container()
+                                ? SavedRecipe()
                                 : _selectedIndex == 3
                                     ? ProfileScreen()
                                     : Container(),

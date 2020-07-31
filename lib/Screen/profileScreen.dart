@@ -23,115 +23,116 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Expanded(
+    return Padding(
+      padding: const EdgeInsets.only(right :20.0),
       child: Column(
-        children: [
-          Row(
-            children: [
-              IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
-              Text(
-                'Profile',
-                style: kDetailtextStyle.copyWith(fontSize: 18),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
+          children: [
+            Row(
               children: [
-                CircleAvatar(
-                  radius: 80,
-                  backgroundImage: AssetImage(
-                    'assets/images/slice_2.png',
-                  ),
-                ),
+                IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
                 Text(
-                  'Brian Parker',
-                  style: kDetailtextStyle.copyWith(
-                      color: Hexcolor('#000000'), fontWeight: FontWeight.w500),
+                  'Profile',
+                  style: kDetailtextStyle.copyWith(fontSize: 18),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    followersCard(1, 'followers'),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    followersCard(1, 'Recipe'),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    followersCard(1, 'Review'),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 50,
-                      width: width * 0.65,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50)),
-                      child: RaisedButton(
-                        clipBehavior: Clip.antiAlias,
-                        onPressed: () {},
-                        color: Hexcolor('#fE6D73'),
-                        child: Text(
-                          'Edit Profile',
-                          style: headingtextStyle.copyWith(
-                              fontSize: 18, color: Hexcolor('#333333')),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: 50,
-                      child: RaisedButton(
-                        color: Hexcolor('#fE6D73'),
-                        onPressed: () {},
-                        child: Icon(Icons.settings),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                TabBar(
-                  indicatorColor: Colors.red,
-                  controller: _tabController,
-                  tabs: [
-                    Text(
-                      'Recipie',
-                      style:
-                          kotherHeadertextStyle.copyWith(color: Colors.black),
-                    ),
-                    Text(
-                      'Review',
-                      style:
-                          kotherHeadertextStyle.copyWith(color: Colors.black),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                chatCard(width),
-                chatCard(width),
-                chatCard(width),
               ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 0),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage(
+                      'assets/images/slice_2.png',
+                    ),
+                  ),
+                  Text(
+                    'Brian Parker',
+                    style: kDetailtextStyle.copyWith(
+                        color: Hexcolor('#000000'), fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+//                Row(
+//                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                  crossAxisAlignment: CrossAxisAlignment.start,
+//                  children: [
+//                    followersCard(1, 'followers'),
+//                    SizedBox(
+//                      width: 30,
+//                    ),
+//                    followersCard(1, 'Recipe'),
+//                    SizedBox(
+//                      width: 30,
+//                    ),
+//                    followersCard(1, 'Review'),
+//                  ],
+//                ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: width * 0.65,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: RaisedButton(
+                          clipBehavior: Clip.antiAlias,
+                          onPressed: () {},
+                          color: Hexcolor('#fE6D73').withOpacity(0.2),
+                          child: Text(
+                            'Edit Profile',
+                            style: headingtextStyle.copyWith(
+                                fontSize: 18, color: Hexcolor('#333333')),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        child: RaisedButton(
+                          color: Hexcolor('#fE6D73'),
+                          onPressed: () {},
+                          child: Icon(Icons.settings),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  TabBar(
+                    indicatorColor: Colors.red,
+                    controller: _tabController,
+                    tabs: [
+                      Text(
+                        'Recipie',
+                        style:
+                            kotherHeadertextStyle.copyWith(color: Colors.black),
+                      ),
+                      Text(
+                        'Review',
+                        style:
+                            kotherHeadertextStyle.copyWith(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  chatCard(width),
+                  chatCard(width),
+                  chatCard(width),
+                ],
+              ),
+            ),
+          ],
       ),
     );
   }
@@ -142,7 +143,7 @@ Widget chatCard(double width) {
     padding: EdgeInsets.all(8),
     margin: EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8), color: Hexcolor('#fE6D73')),
+        borderRadius: BorderRadius.circular(8), color: Hexcolor('#fE6D73').withOpacity(0.2)),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

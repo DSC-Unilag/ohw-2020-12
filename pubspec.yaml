@@ -29,6 +29,9 @@ dependencies:
   hexcolor:
   cloud_firestore:
   firebase_auth:
+#  google_sign_in:
+  firebase_storage:
+  dio:
   # library to make http requests
   http:
   # async package to add additional cancellable operation
@@ -40,6 +43,8 @@ dependencies:
   #provider architecture
   provider_architecture:
   image_picker: ^0.6.7+4
+  cached_network_image:
+  uuid:
 
 dev_dependencies:
   flutter_test:
