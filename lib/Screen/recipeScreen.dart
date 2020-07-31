@@ -67,6 +67,7 @@ class _RecipieScreenState extends State<RecipieScreen> {
                               },
                               child: fromRecipiePageCard(
                                   image: model.recipe[index].url,
+                                  save: true,
                                   title: model.recipe[index].title,
                                   about: model.recipe[index].description,
                                   author: model.recipe[index].user == null

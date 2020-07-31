@@ -54,7 +54,7 @@ class _SavedRecipeState extends State<SavedRecipe> {
                               recipe: model.savedrecipe[index],
                             )));
                           },
-                          child: fromRecipiePageCard(image: model.savedrecipe[index].url, title: model.savedrecipe[index].title,
+                          child: fromRecipiePageCard(image: model.savedrecipe[index].url, title: model.savedrecipe[index].title, save: false,
                               about: model.savedrecipe[index].description, author: model.savedrecipe[index].user == null ? "Babalola Gbogo" : model.savedrecipe[index].user),
                         );
                       })

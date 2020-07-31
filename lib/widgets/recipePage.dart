@@ -6,7 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 import '../constants.dart';
 
 Widget fromRecipiePageCard(
-    {String image, String title, String about, String author, Function onPressed}) {
+    {String image, String title, String about, String author, Function onPressed, bool save}) {
   return Container(
     padding: EdgeInsets.only(right: 20),
     margin: EdgeInsets.only(bottom: 10),
@@ -60,9 +60,9 @@ Widget fromRecipiePageCard(
                   SizedBox(
                     width: 20,
                   ),
-                  IconButton(
+                  save ? IconButton(
                       icon: SvgPicture.asset('assets/images/saved.svg'),
-                      onPressed: onPressed)
+                      onPressed: onPressed) : Container()
                 ],
               ),
             ],

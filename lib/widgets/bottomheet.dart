@@ -36,19 +36,21 @@ Container bottomSheet(Function itemTapped, int _selectedIndex) {
                 "Recipie",
                 style: kotherHeadertextStyle.copyWith(fontSize: 10),
               )),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/saved.svg'),
-              title: Text(
-                "Saved",
-                style: kotherHeadertextStyle.copyWith(fontSize: 10),
-              )),
+
           BottomNavigationBarItem(
               icon: Image.asset(
-                'assets/images/images.png',
+                'assets/images/images.png', color: Colors.white,
                 height: 25,
               ),
               title: Text(
                 "Profile",
+                style: kotherHeadertextStyle.copyWith(fontSize: 10, color: Colors.white),
+              )
+          ),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset('assets/images/saved.svg'),
+              title: Text(
+                "Saved",
                 style: kotherHeadertextStyle.copyWith(fontSize: 10),
               )),
         ],

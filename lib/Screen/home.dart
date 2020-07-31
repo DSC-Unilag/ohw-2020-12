@@ -5,6 +5,7 @@ import 'package:provider_architecture/_viewmodel_provider.dart';
 import 'package:recipesaver/Screen/addRecipie.dart';
 import 'package:recipesaver/Screen/profileScreen.dart';
 import 'package:recipesaver/Screen/recipeScreen.dart';
+import 'package:recipesaver/Screen/savedRecipe.dart';
 import 'package:recipesaver/viewmodel/base_model.dart';
 import 'package:recipesaver/widgets/bottomheet.dart';
 import 'package:recipesaver/widgets/customTexts.dart';
@@ -51,9 +52,9 @@ class _HomeState extends State<Home> {
                         : _selectedIndex == 1
                             ? RecipieScreen()
                             : _selectedIndex == 2
-                                ? SavedRecipe()
+                                ? null
                                 : _selectedIndex == 3
-                                    ? ProfileScreen()
+                                    ? SavedRecipe()
                                     : Container(),
                   ],
                 ),
