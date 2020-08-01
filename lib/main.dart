@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Recipe Saver',
       navigatorKey: locator<NavigationService>().navigationKey,
       home: StartUpView(),

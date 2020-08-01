@@ -24,42 +24,45 @@ Container bottomSheet(Function itemTapped, int _selectedIndex) {
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/images/discover.svg',
-                color: Colors.black,
+                color: _selectedIndex == 0 ? Colors.black : Colors.grey,
               ),
               title: Text(
                 "Discover",
                 style: kotherHeadertextStyle.copyWith(fontSize: 10),
               )),
           BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/recipe.svg'),
+              icon: SvgPicture.asset(
+                'assets/images/recipe.svg',
+                color: _selectedIndex == 1 ? Colors.black : Colors.grey,
+              ),
               title: Text(
                 "Recipie",
                 style: kotherHeadertextStyle.copyWith(fontSize: 10),
               )),
-
           BottomNavigationBarItem(
-              icon: Image.asset(
-                'assets/images/images.png', color: Colors.white,
-                height: 25,
+              icon: SvgPicture.asset(
+                'assets/images/saved.svg',
+                color: _selectedIndex == 2 ? Colors.black : Colors.grey,
               ),
               title: Text(
-                "Profile",
-                style: kotherHeadertextStyle.copyWith(fontSize: 10, color: Colors.white),
-              )
-          ),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset('assets/images/saved.svg'),
-              title: Text(
                 "Saved",
+                style: kotherHeadertextStyle.copyWith(fontSize: 10),
+              )),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset('assets/images/profile.svg',
+                  height: 25,
+                  color: _selectedIndex == 3 ? Colors.black : Colors.grey),
+              title: Text(
+                "Profile",
                 style: kotherHeadertextStyle.copyWith(fontSize: 10),
               )),
         ],
         showUnselectedLabels: true,
         currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.brown,
+        unselectedItemColor: Colors.grey,
         backgroundColor: Hexcolor('#FFFFFF'),
         onTap: itemTapped,
-        fixedColor: Hexcolor('#FE6D73'),
+        fixedColor: Colors.black,
       ),
     ),
   );

@@ -37,7 +37,6 @@ class _HomeState extends State<Home> {
     return ViewModelProvider<BaseModel>.withConsumer(
         viewModel: BaseModel(),
         builder: (context, model, child) {
-          // print(_selectedIndex);
           // print(model.currentUser.fullname);
           return Scaffold(
             backgroundColor: kbackgoundColor,
@@ -51,9 +50,9 @@ class _HomeState extends State<Home> {
                         ? DiscoverPage()
                         : _selectedIndex == 1
                             ? RecipieScreen()
-                            : _selectedIndex == 2
-                                ? null
-                                : _selectedIndex == 3
+                            : _selectedIndex == 3
+                                ? ProfileScreen()
+                                : _selectedIndex == 2
                                     ? SavedRecipe()
                                     : Container(),
                   ],

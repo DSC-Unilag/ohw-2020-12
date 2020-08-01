@@ -37,7 +37,7 @@ class _InfoPageState extends State<InfoPage> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         margin: EdgeInsets.only(top: 10),
         child: ListView(
           physics: BouncingScrollPhysics(),
@@ -48,11 +48,11 @@ class _InfoPageState extends State<InfoPage> {
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(
-                        widget.recipe.url
-                      ))),
+                      image: NetworkImage(widget.recipe.url))),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             foodValue(20, 30, 40),
             SizedBox(
               height: 30,
@@ -60,7 +60,7 @@ class _InfoPageState extends State<InfoPage> {
             SizedBox(
               width: width * 0.9,
               child: Text(
-             " ${widget.recipe.description}",
+                " ${widget.recipe.description}",
                 style: kotherHeadertextStyle,
               ),
             ),
@@ -87,16 +87,20 @@ class _InfoPageState extends State<InfoPage> {
             ),
             Text(
               'Utensils Needed:',
-              style: kDetailtextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+              style: kDetailtextStyle.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
               "${widget.recipe.utensils}",
               style: kDetailtextStyle,
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               'Ingredients:',
-              style: kDetailtextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.bold),
+              style: kDetailtextStyle.copyWith(
+                  fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(
               "${widget.recipe.ingredients}",
@@ -105,7 +109,9 @@ class _InfoPageState extends State<InfoPage> {
             SizedBox(
               height: 20,
             ),
-            Text('Process:', style: kDetailtextStyle.copyWith(fontSize: 18, fontWeight: FontWeight.bold))
+            Text('Process:',
+                style: kDetailtextStyle.copyWith(
+                    fontSize: 18, fontWeight: FontWeight.bold))
           ],
         ),
       ),
