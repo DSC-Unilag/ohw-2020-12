@@ -22,6 +22,7 @@ export interface UserDocument extends mongoose.Document {
 
 const UserSchema: mongoose.Schema = new Schema({
   email: String,
+  username: String,
   password: String,
   createdAt: {
     type: Date,
