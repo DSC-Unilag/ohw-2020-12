@@ -16,7 +16,7 @@ const ReviewSchema: mongoose.Schema = new Schema({
   review: {
     type: String,
   },
-  author: Schema.Types.ObjectId,
+  author: String,
 });
 
 const Review: mongoose.Model<ReviewDocument> = mongoose.model(
