@@ -15,6 +15,14 @@ const saveRecipe = async (req: Request, res: Response) => {
   // find the recipe document
   const recipe: RecipeDocument = await Recipe.findOne({ _id: recipeId });
   if (recipe) {
+    // check if the recipe is not saved already
+    const user = await User.findOne({ _id: userId });
+    if (user.saved_recipes.includes(recipeId)) {
+      return res.status(400).json({
+        status: 400,
+        error: "Bad Request. Recipe already saved.",
+      });
+    }
     // update the user
     const updatedUser: UserDocument = await User.findOneAndUpdate(
       { _id: userId },
@@ -52,7 +60,15 @@ const favorite = async (req: Request, res: Response) => {
   // find the recipe document
   const recipe: RecipeDocument = await Recipe.findOne({ _id: recipeId });
 
+  // check if the recipe is not saved already
+  const user = await User.findOne({ _id: userId });
   if (recipe) {
+    if (user.favorite_recipes.includes(recipeId)) {
+      return res.status(400).json({
+        status: 400,
+        error: "Bad Request. Recipe already favorite.",
+      });
+    }
     // update the user
     const updatedUser: UserDocument = await User.findOneAndUpdate(
       { _id: userId },
@@ -93,8 +109,8 @@ const getAll = async (req: Request, res: Response) => {
   });
 
   if (users) {
-    return res.status(200).json({
-      status: 200,
+    return res.status(302).json({
+      status: 302,
       users: protectedUsers,
       message: "Successfully got all users.",
     });
@@ -118,8 +134,8 @@ const getOne = (req: Request, res: Response) => {
     .populate("favorite_recipes")
     .then((user) => {
       user.password = undefined;
-      return res.status(200).json({
-        status: 200,
+      return res.status(302).json({
+        status: 302,
         user,
         message: "Successfully got user details.",
       });
@@ -160,8 +176,8 @@ const createReview = async (req: Request, res: Response) => {
 
     // return the updated recipe
     if (updatedRecipe) {
-      return res.status(200).json({
-        status: 200,
+      return res.status(201).json({
+        status: 201,
         updatedRecipe,
         message: "Successfully reviewed recipe.",
       });

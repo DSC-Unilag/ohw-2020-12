@@ -58,8 +58,8 @@ const create = async (req: Request, res: Response) => {
   }
 
   if (recipe && image) {
-    return res.status(200).json({
-      status: 200,
+    return res.status(201).json({
+      status: 201,
       recipe,
       message: "Successfully created a new recipe.",
     });
@@ -81,8 +81,8 @@ const getAll = async (req: Request, res: Response) => {
   const recipes: RecipeDocument[] = await Recipe.find({});
 
   if (recipes) {
-    return res.status(200).json({
-      status: 200,
+    return res.status(302).json({
+      status: 302,
       recipes,
       message: "Successfully got all recipes.",
     });
@@ -104,8 +104,8 @@ const getOne = (req: Request, res: Response) => {
   Recipe.findOne({ _id: id })
     .populate("reviews")
     .then((recipe) => {
-      return res.status(200).json({
-        status: 200,
+      return res.status(302).json({
+        status: 302,
         recipe,
         message: "Successfully got a recipe.",
       });

@@ -11,8 +11,8 @@ const getAll = async (req: Request, res: Response) => {
   const categories: CategoryDocument[] = await Category.find({});
 
   if (categories) {
-    return res.status(200).json({
-      status: 200,
+    return res.status(302).json({
+      status: 302,
       categories,
       message: "Successfully got all categories.",
     });
@@ -25,7 +25,7 @@ const getAll = async (req: Request, res: Response) => {
 };
 
 /**
- * This method gets all the recipes under a signle category by id
+ * This method gets all the recipes under a single category by id
  * @param req - Request object
  * @param res - Response object
  */
@@ -35,14 +35,13 @@ const getOne = (req: Request, res: Response) => {
   Category.findOne({ _id: id })
     .populate("recipes")
     .then((category: CategoryDocument) => {
-      return res.status(200).json({
-        status: 200,
+      return res.status(302).json({
+        status: 302,
         category,
         message: "Successfully got all recipes in this category.",
       });
     })
     .catch((e: Error) => {
-      console.log(e);
       return res.status(500).json({
         status: 500,
         error:
