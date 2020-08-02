@@ -8,5 +8,6 @@ const recipeRouter: Router = express.Router();
 recipeRouter.post("/create", multerUploads, checkAuth, recipeController.create);
 recipeRouter.get("/all", recipeController.getAll);
 recipeRouter.get("/:id", recipeController.getOne);
+recipeRouter.post("/search", recipeController.searchRecipes);
 
 export default recipeRouter;

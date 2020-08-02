@@ -118,4 +118,25 @@ const getOne = (req: Request, res: Response) => {
     });
 };
 
-export default { create, getAll, getOne };
+const searchRecipes = async (req: Request, res: Response) => {
+  // get the search term
+  const { searchString } = req.body;
+
+  const searchResult = await Recipe.find({
+    title: { $regex: searchString, $options: "i" },
+  });
+  if (searchResult) {
+    return res.status(302).json({
+      status: 302,
+      result: searchResult,
+      message: "Successfully got all recipes matching your search.",
+    });
+  } else {
+    return res.status(404).json({
+      status: 404,
+      message: "Sorry, no records matched your search.",
+    });
+  }
+};
+
+export default { create, getAll, getOne, searchRecipes };
