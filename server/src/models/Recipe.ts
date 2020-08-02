@@ -4,8 +4,12 @@ const { Schema } = mongoose;
 
 export interface RecipeDocument extends mongoose.Document {
   title: string;
-  instructions: string;
-  duration: number;
+  description: string;
+  time: number;
+  ownerId?: string;
+  user?: string;
+  cusine: string;
+  utensils: string;
   category: string;
   createdAt?: string;
   image?: string;
@@ -19,13 +23,18 @@ export interface RecipeDocument extends mongoose.Document {
 }
 
 const RecipeSchema: mongoose.Schema = new Schema({
+  time: Number,
+  ownerId: Schema.Types.ObjectId,
+  user: String,
+  cusine: String,
+  utensils: String,
   title: String,
   image: String,
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  instructions: String,
+  description: String,
   ingredients: [
     {
       type: String,

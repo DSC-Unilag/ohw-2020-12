@@ -12,15 +12,12 @@ import Category from "../../models/Category";
 const create = async (req: Request, res: Response) => {
   const {
     title,
-    instructions,
-    duration,
+    description,
+    time,
     category,
-  }: {
-    title: string;
-    instructions: string;
-    duration: number;
-    category: string;
-  } = req.body;
+    cusine,
+    utensils,
+  }: RecipeDocument = req.body;
 
   let image: string;
 
@@ -32,10 +29,14 @@ const create = async (req: Request, res: Response) => {
 
   const recipe: RecipeDocument = await Recipe.create({
     title,
-    instructions,
-    duration,
+    description,
+    time,
     image,
     category,
+    ownerId: req.currentUser._id,
+    cusine,
+    utensils,
+    user: req.currentUser.username,
   });
 
   if (recipe) {

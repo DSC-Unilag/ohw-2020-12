@@ -139,14 +139,14 @@ const getOne = (req: Request, res: Response) => {
  */
 const createReview = async (req: Request, res: Response) => {
   const { stars, review } = req.body;
-  const authorId = req.currentUser._id;
+  const user: string = req.currentUser.username;
 
   const id: string = req.params.id;
   // first create the review
   const createdReview: ReviewDocument = await Review.create({
     stars,
     review,
-    author: authorId,
+    author: user,
   });
 
   if (createdReview) {

@@ -34,14 +34,14 @@ const getOne = (req: Request, res: Response) => {
 
   Category.findOne({ _id: id })
     .populate("recipes")
-    .then((category) => {
+    .then((category: CategoryDocument) => {
       return res.status(200).json({
         status: 200,
         category,
         message: "Successfully got all recipes in this category.",
       });
     })
-    .catch((e) => {
+    .catch((e: Error) => {
       console.log(e);
       return res.status(500).json({
         status: 500,
