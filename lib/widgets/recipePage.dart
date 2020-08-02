@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../constants.dart';
 
 Widget fromRecipiePageCard(
-    String image, String title, String about, String author) {
+    {String image,
+    String title,
+    String about,
+    String author,
+    Function onPressed,
+    bool save}) {
   return Container(
     padding: EdgeInsets.only(right: 20),
     margin: EdgeInsets.only(bottom: 10),
@@ -15,10 +21,8 @@ Widget fromRecipiePageCard(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              radius: 60,
-              backgroundImage: AssetImage(image),
-            ),
+            child:
+                CircleAvatar(radius: 60, backgroundImage: NetworkImage(image)),
           ),
           SizedBox(
             width: 8,
@@ -46,6 +50,7 @@ Widget fromRecipiePageCard(
                     overflow: TextOverflow.ellipsis,
                   )),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     width: 120,
@@ -56,12 +61,11 @@ Widget fromRecipiePageCard(
                       style: kotherHeadertextStyle.copyWith(fontSize: 10),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  IconButton(
-                      icon: SvgPicture.asset('assets/images/saved.svg'),
-                      onPressed: () {})
+                  save
+                      ? IconButton(
+                          icon: SvgPicture.asset('assets/images/saved.svg'),
+                          onPressed: onPressed)
+                      : Container()
                 ],
               ),
             ],

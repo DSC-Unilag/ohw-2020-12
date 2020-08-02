@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:recipesaver/widgets/recipePage.dart';
 import 'package:recipesaver/Screen/infoPage.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
@@ -7,24 +6,23 @@ import 'package:recipesaver/viewmodel/get_recipe_viewmodel.dart';
 
 import '../constants.dart';
 
-class RecipieScreen extends StatefulWidget {
+
+class SavedRecipe extends StatefulWidget {
   @override
-  _RecipieScreenState createState() => _RecipieScreenState();
+  _SavedRecipeState createState() => _SavedRecipeState();
 }
 
-class _RecipieScreenState extends State<RecipieScreen> {
+class _SavedRecipeState extends State<SavedRecipe> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return ViewModelProvider<GetRecipeViewModel>.withConsumer(
         viewModel: GetRecipeViewModel(),
-        onModelReady: (model) => model.fetchRecipe(),
+        onModelReady: (model)=> model.fetchSavedRecipe(),
         builder: (context, model, child) {
           return Column(
             children: [
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -47,37 +45,19 @@ class _RecipieScreenState extends State<RecipieScreen> {
               ),
               Container(
                   height: height * 0.7,
-                  child: model.busy
-                      ? Center(
-                          child: CircularProgressIndicator(
-                          strokeWidth: 3,
-                          valueColor: AlwaysStoppedAnimation(Colors.red),
-                        ))
-                      : ListView.builder(
-                          itemCount: model.recipe.length,
-                          itemBuilder: (_, index) {
-                            return InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => InfoPage(
-                                              recipe: model.recipe[index],
-                                            )));
-                              },
-                              child: fromRecipiePageCard(
-                                  image: model.recipe[index].url,
-                                  save: true,
-                                  title: model.recipe[index].title,
-                                  about: model.recipe[index].description,
-                                  author: model.recipe[index].user == null
-                                      ? "Babalola Gbogo"
-                                      : model.recipe[index].user,
-                                  onPressed: () {
-                                    model.saveRecipe(model.recipe[index]);
-                                  }),
-                            );
-                          })
+                  child: model.busy ? Center(child: CircularProgressIndicator(strokeWidth: 3, valueColor: AlwaysStoppedAnimation(Colors.red),)) : ListView.builder(
+                      itemCount: model.savedrecipe.length,
+                      itemBuilder: (_, index){
+                        return InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=> InfoPage(
+                              recipe: model.savedrecipe[index],
+                            )));
+                          },
+                          child: fromRecipiePageCard(image: model.savedrecipe[index].url, title: model.savedrecipe[index].title, save: false,
+                              about: model.savedrecipe[index].description, author: model.savedrecipe[index].user == null ? "Babalola Gbogo" : model.savedrecipe[index].user),
+                        );
+                      })
 //              ListView(
 //                shrinkWrap: true,
 //                scrollDirection: Axis.vertical,
@@ -92,9 +72,10 @@ class _RecipieScreenState extends State<RecipieScreen> {
 //                      'ththSththhttddddddddddddththththrrhrhrhrdd', ' Armby Helen'),
 //                ],
 //              ),
-                  ),
+              ),
             ],
           );
-        });
+        }
+    );
   }
 }

@@ -8,6 +8,7 @@ const String SignUpViewRoute = "SignUp";
 const String HomeViewRoute = "Home";
 const String HomePageVieRoute = "HomePage";
 
+const String api_url = "https://recipe-saver-backend.herokuapp.com/api/v1/recipe/all";
 var kTextColor1 = Hexcolor('#F2F2F2');
 var kRecipieTextColor = Hexcolor('#FFFFFF');
 var kbackgoundColor = Hexcolor('#FFFFFF');

@@ -5,6 +5,7 @@ import 'package:provider_architecture/_viewmodel_provider.dart';
 import 'package:recipesaver/Screen/addRecipie.dart';
 import 'package:recipesaver/Screen/profileScreen.dart';
 import 'package:recipesaver/Screen/recipeScreen.dart';
+import 'package:recipesaver/Screen/savedRecipe.dart';
 import 'package:recipesaver/viewmodel/base_model.dart';
 import 'package:recipesaver/widgets/bottomheet.dart';
 import 'package:recipesaver/widgets/customTexts.dart';
@@ -36,7 +37,6 @@ class _HomeState extends State<Home> {
     return ViewModelProvider<BaseModel>.withConsumer(
         viewModel: BaseModel(),
         builder: (context, model, child) {
-          // print(_selectedIndex);
           // print(model.currentUser.fullname);
           return Scaffold(
             backgroundColor: kbackgoundColor,
@@ -50,10 +50,10 @@ class _HomeState extends State<Home> {
                         ? DiscoverPage()
                         : _selectedIndex == 1
                             ? RecipieScreen()
-                            : _selectedIndex == 2
-                                ? Container()
-                                : _selectedIndex == 3
-                                    ? ProfileScreen()
+                            : _selectedIndex == 3
+                                ? ProfileScreen()
+                                : _selectedIndex == 2
+                                    ? SavedRecipe()
                                     : Container(),
                   ],
                 ),
