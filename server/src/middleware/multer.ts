@@ -5,6 +5,7 @@ import { Request } from "express";
 
 const storage: multer.StorageEngine = multer.memoryStorage();
 
+// single("image") - specifies name of the form field to process
 const multerUploads = multer({ storage }).single("image");
 
 const dUri: DatauriParser = new DatauriParser();

@@ -13,7 +13,7 @@ export interface RecipeDocument extends mongoose.Document {
   category: string;
   createdAt?: string;
   image?: string;
-  ingredient?: [
+  ingredients?: [
     {
       type: string;
       quantity: string;

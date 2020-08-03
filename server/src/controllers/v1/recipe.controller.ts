@@ -1,8 +1,11 @@
 import Recipe, { RecipeDocument } from "../../models/Recipe";
 import { Request, Response } from "express";
+import { body, validationResult, check } from "express-validator";
 import { dataUri } from "../../middleware/multer";
 import { uploader } from "../../config/cloudinary.config";
 import Category from "../../models/Category";
+
+// TODO: implement add ingredients
 
 /**
  * This function creates a new recipe
@@ -18,6 +21,55 @@ const create = async (req: Request, res: Response) => {
     cusine,
     utensils,
   }: RecipeDocument = req.body;
+
+  // validate the text inputs
+  body("title")
+    .notEmpty()
+    .withMessage("Recipe title cannot be empty")
+    .isLength({ min: 3 })
+    .withMessage("Title must be at least 3 characters long.")
+    .trim()
+    .escape();
+
+  body("description")
+    .notEmpty()
+    .withMessage("Recipe description cannot be empty")
+    .isLength({ min: 10 })
+    .withMessage("Description must be at least 10 characters long.")
+    .trim()
+    .escape();
+
+  body("time")
+    .notEmpty()
+    .withMessage("Duration time cannot be empty.")
+    .trim()
+    .escape();
+
+  body("category")
+    .notEmpty()
+    .withMessage("Category cannot be empty.")
+    .trim()
+    .escape();
+
+  body("cusine")
+    .notEmpty()
+    .withMessage("Cusine cannot be empty.")
+    .trim()
+    .escape();
+
+  body("utensils")
+    .notEmpty()
+    .withMessage("utensils cannot be empty.")
+    .trim()
+    .escape();
+  // find the validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: 400,
+      errors: errors.array(),
+    });
+  }
 
   let image: string;
 
@@ -101,6 +153,22 @@ const getAll = async (req: Request, res: Response) => {
  */
 const getOne = (req: Request, res: Response) => {
   const id: string = req.params.id;
+  // validate the text inputs
+  check("id")
+    .notEmpty()
+    .withMessage("Id cannot be empty.")
+    .isMongoId()
+    .withMessage("Invalid recipe ID.");
+
+  // find the validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: 400,
+      errors: errors.array(),
+    });
+  }
+
   Recipe.findOne({ _id: id })
     .populate("reviews")
     .then((recipe) => {
@@ -121,6 +189,22 @@ const getOne = (req: Request, res: Response) => {
 const searchRecipes = async (req: Request, res: Response) => {
   // get the search term
   const { searchString } = req.body;
+  // validate the text inputs
+  body("searchString")
+    .notEmpty()
+    .withMessage("searchString cannot be empty.")
+    .isLength({ min: 1 })
+    .trim()
+    .escape();
+
+  // find the validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      status: 400,
+      errors: errors.array(),
+    });
+  }
 
   const searchResult = await Recipe.find({
     title: { $regex: searchString, $options: "i" },
