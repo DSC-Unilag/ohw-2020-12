@@ -47,7 +47,7 @@ const create = async (req: Request, res: Response) => {
     );
   });
 
-  if (isValidIngredientsArray)
+  if (!isValidIngredientsArray)
     return res.status(400).json({
       status: 400,
       errors: ["Each ingredient object must have a type and a quantity."],
