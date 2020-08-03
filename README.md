@@ -1,6 +1,11 @@
 # Recipe Saver
 A application where users can share and save recipes. 
 # Technologies
+### UI/UX 
+ - Figma
+
+Contributors(s): 
+
 ### Backend REST API
  - Node.js
  - TypeScript
