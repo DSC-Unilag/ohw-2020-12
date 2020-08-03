@@ -53,13 +53,6 @@ const create = async (req: Request, res: Response) => {
       errors: ["Each ingredient object must have a type and a quantity."],
     });
 
-  if (typeof ingredients !== "object") {
-    return res.status(400).json({
-      status: 400,
-      errors: ["invalid ingredients type"],
-    });
-  }
-
   // validate the text inputs
 
   // find the validation errors
