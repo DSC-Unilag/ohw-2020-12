@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:recipesaver/Screen/editProfile.dart';
 
 import '../constants.dart';
 
@@ -23,190 +25,210 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.only(right :20.0),
-      child: Column(
-          children: [
-            Row(
+    return Container(
+      height: height,
+      width: width,
+      padding: const EdgeInsets.only(right: 20.0),
+      child: ListView(
+        children: [
+          Row(
+            children: [
+              IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
+              Text(
+                'Profile',
+                style: kDetailtextStyle.copyWith(fontSize: 18),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
-                Text(
-                  'Profile',
-                  style: kDetailtextStyle.copyWith(fontSize: 18),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 0),
-              child: Column(
-                children: [
-                  CircleAvatar(
+                Center(
+                  child: CircleAvatar(
                     radius: 80,
                     backgroundImage: AssetImage(
                       'assets/images/slice_2.png',
                     ),
                   ),
-                  Text(
+                ),
+                Center(
+                  child: Text(
                     'Brian Parker',
                     style: kDetailtextStyle.copyWith(
-                        color: Hexcolor('#000000'), fontWeight: FontWeight.w500),
+                        color: Hexcolor('#000000'),
+                        fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                Center(
+                  child: Text(
+                    'brianparker@gmail.com',
+                    style: kDetailtextStyle.copyWith(
+                        color: Hexcolor('#333333'),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w300),
                   ),
-//                Row(
-//                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                  crossAxisAlignment: CrossAxisAlignment.start,
-//                  children: [
-//                    followersCard(1, 'followers'),
-//                    SizedBox(
-//                      width: 30,
-//                    ),
-//                    followersCard(1, 'Recipe'),
-//                    SizedBox(
-//                      width: 30,
-//                    ),
-//                    followersCard(1, 'Review'),
-//                  ],
-//                ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 50,
-                        width: width * 0.65,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50)),
-                        child: RaisedButton(
-                          clipBehavior: Clip.antiAlias,
-                          onPressed: () {},
-                          color: Hexcolor('#fE6D73').withOpacity(0.2),
-                          child: Text(
-                            'Edit Profile',
-                            style: headingtextStyle.copyWith(
-                                fontSize: 18, color: Hexcolor('#333333')),
-                          ),
-                        ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditProfilePage()));
+                      },
+                      padding: EdgeInsets.all(10),
+                      color: Hexcolor('#fE6D73'),
+                      child: Text(
+                        'Edit Profile',
+                        style: headingtextStyle.copyWith(
+                            fontSize: 18, color: Hexcolor('#F2F2F2')),
                       ),
-                      Container(
-                        height: 50,
-                        child: RaisedButton(
-                          color: Hexcolor('#fE6D73'),
-                          onPressed: () {},
-                          child: Icon(Icons.settings),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  TabBar(
-                    indicatorColor: Colors.red,
-                    controller: _tabController,
-                    tabs: [
-                      Text(
-                        'Recipie',
-                        style:
-                            kotherHeadertextStyle.copyWith(color: Colors.black),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      color: Hexcolor('#fE6D73'),
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.settings,
+                        color: Hexcolor('#F2F2F2'),
                       ),
-                      Text(
-                        'Review',
-                        style:
-                            kotherHeadertextStyle.copyWith(color: Colors.black),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  chatCard(width),
-                  chatCard(width),
-                  chatCard(width),
-                ],
-              ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  'Experience',
+                  style: kotherHeadertextStyle.copyWith(
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue tincidunt egestas ultricies ut eget sed at. Non ut id amet adipiscing aliquet amet. Orci risus ullamcorper integer amet, mattis id. Augue.',
+                  style: kotherHeadertextStyle.copyWith(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12,
+                      color: Hexcolor('#333333')),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                littleInfo('assets/images/recipieProfile.svg', 4, 'Recipies'),
+                SizedBox(
+                  height: 30,
+                ),
+                littleInfo('assets/images/starsProfile.svg', 4, 'likes'),
+                SizedBox(
+                  height: 30,
+                ),
+                littleInfo('assets/images/savesForprofile.svg', 20, 'saves'),
+                SizedBox(
+                  height: 30,
+                ),
+              ],
             ),
-          ],
+          ),
+        ],
       ),
     );
   }
 }
 
-Widget chatCard(double width) {
-  return Container(
-    padding: EdgeInsets.all(8),
-    margin: EdgeInsets.only(bottom: 10),
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8), color: Hexcolor('#fE6D73').withOpacity(0.2)),
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          radius: 20,
-          backgroundImage: AssetImage('assets/images/slice_2.png'),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Patrisha Pere',
-                  style: headingtextStyle.copyWith(
-                      fontSize: 18, color: Hexcolor('#333333')),
-                ),
-              ],
-            ),
-            Text(
-              '35 Min ago',
-              style: kotherHeadertextStyle.copyWith(fontSize: 10),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              width: width * 0.7,
-              child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pharetra turpis elementumlk',
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: kotherHeadertextStyle.copyWith(fontSize: 10)),
-            )
-          ],
-        )
-      ],
-    ),
+Widget littleInfo(String image, int number, String type) {
+  return Row(
+    children: [
+      SvgPicture.asset(
+        image,
+        color: Colors.black,
+      ),
+      SizedBox(
+        width: 10,
+      ),
+      Text(
+        '$number ',
+        style: kotherHeadertextStyle.copyWith(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Hexcolor('#333333')),
+      ),
+      Text(
+        type,
+        style: kotherHeadertextStyle.copyWith(
+            fontWeight: FontWeight.w300,
+            fontSize: 12,
+            color: Hexcolor('#333333')),
+      ),
+    ],
   );
 }
 
-Widget followersCard(int number, String text) {
-  return Container(
-    padding: EdgeInsets.all(3),
-    height: 80,
-    width: 80,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8), color: Hexcolor('#ff6c74')),
-    child: Column(
-      children: [
-        Text(
-          number.toString(),
-          style: kDetailtextStyle2,
-        ),
-        Text(
-          text,
-          style: kDetailtextStyle.copyWith(
-              fontSize: 15, color: Hexcolor('#333333')),
-        ),
-      ],
-    ),
-  );
-}
+// Widget chatCard(double width) {
+//   return Container(
+//     padding: EdgeInsets.all(8),
+//     margin: EdgeInsets.only(bottom: 10),
+//     decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(8),
+//         color: Hexcolor('#fE6D73').withOpacity(0.2)),
+//     child: Row(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         CircleAvatar(
+//           radius: 20,
+//           backgroundImage: AssetImage('assets/images/slice_2.png'),
+//         ),
+//         SizedBox(
+//           width: 10,
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Row(
+//               children: [
+//                 Text(
+//                   'Patrisha Pere',
+//                   style: headingtextStyle.copyWith(
+//                       fontSize: 18, color: Hexcolor('#333333')),
+//                 ),
+//               ],
+//             ),
+//             Text(
+//               '35 Min ago',
+//               style: kotherHeadertextStyle.copyWith(fontSize: 10),
+//             ),
+//             SizedBox(
+//               height: 10,
+//             ),
+//             SizedBox(
+//               width: width * 0.7,
+//               child: Text(
+//                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pharetra turpis elementumlk',
+//                   maxLines: 3,
+//                   overflow: TextOverflow.ellipsis,
+//                   style: kotherHeadertextStyle.copyWith(fontSize: 10)),
+//             )
+//           ],
+//         )
+//       ],
+//     ),
+//   );
+// }
