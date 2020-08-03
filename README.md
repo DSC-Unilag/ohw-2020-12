@@ -31,7 +31,7 @@ Contributor(s): [Olusamimaths](https://github.com/Olusamimaths/)
 - Javascript fetch api
 - Local Storage
 
-Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI)
+Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev](https://github.com/MirakleDdev)
 
 ### Android and iOS Apps
 
