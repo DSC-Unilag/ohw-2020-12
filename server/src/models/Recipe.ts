@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 export interface RecipeDocument extends mongoose.Document {
   title: string;
   description: string;
-  time: number;
+  time: string;
   ownerId?: string;
   user?: string;
   cusine: string;
@@ -23,7 +23,7 @@ export interface RecipeDocument extends mongoose.Document {
 }
 
 const RecipeSchema: mongoose.Schema = new Schema({
-  time: Number,
+  time: String,
   ownerId: Schema.Types.ObjectId,
   user: String,
   cusine: String,
@@ -38,7 +38,7 @@ const RecipeSchema: mongoose.Schema = new Schema({
   ingredients: [
     {
       type: String,
-      ingredient: String,
+      quantity: String,
     },
   ],
   reviews: [

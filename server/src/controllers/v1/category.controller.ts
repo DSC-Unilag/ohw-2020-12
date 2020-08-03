@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import Category, { CategoryDocument } from "../../models/Category";
+import { validationResult } from "express-validator";
+import sendValidationError from "../../utils";
 
 /**
  * This method gets all the categories
@@ -31,6 +33,11 @@ const getAll = async (req: Request, res: Response) => {
  */
 const getOne = (req: Request, res: Response) => {
   const id: string = req.params.id;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return sendValidationError(res, errors);
+  }
 
   Category.findOne({ _id: id })
     .populate("recipes")

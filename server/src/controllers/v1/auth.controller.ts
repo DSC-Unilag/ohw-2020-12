@@ -1,8 +1,15 @@
 import User, { UserDocument } from "../../models/User";
 import { Request, Response } from "express";
+import { validationResult } from "express-validator";
+import sendValidationError from "../../utils";
 
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return sendValidationError(res, errors);
+  }
 
   // have they registered?
   const user: UserDocument = await User.findOne({ email });
@@ -40,6 +47,11 @@ const register = async (req: Request, res: Response) => {
     password: string;
   } = req.body;
 
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return sendValidationError(res, errors);
+  }
+
   const userExists: UserDocument = await User.findOne({ email });
 
   // registered before? What are they looking for again?
@@ -62,8 +74,8 @@ const register = async (req: Request, res: Response) => {
   // don't expose thy user
   user.password = undefined;
 
-  return res.status(200).json({
-    status: 200,
+  return res.status(201).json({
+    status: 201,
     token,
     user,
     message: "Successfully created a new account.",

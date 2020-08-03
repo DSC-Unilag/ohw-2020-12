@@ -2,7 +2,8 @@ import Recipe, { RecipeDocument } from "../../models/Recipe";
 import { Request, Response } from "express";
 import User, { UserDocument } from "../../models/User";
 import Review, { ReviewDocument } from "../../models/Review";
-import { body, validationResult, check } from "express-validator";
+import { validationResult } from "express-validator";
+import sendValidationError from "../../utils";
 
 /**
  * this method allows saving a recipe by an authenticated user
@@ -12,19 +13,11 @@ import { body, validationResult, check } from "express-validator";
 const saveRecipe = async (req: Request, res: Response) => {
   const recipeId: string = req.params.id;
   const userId: string = req.currentUser._id;
-  // validate the text inputs
-  body("recipeId")
-    .notEmpty()
-    .withMessage("recipeId cannot be empty.")
-    .isMongoId();
 
   // find the validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      status: 400,
-      errors: errors.array(),
-    });
+    return sendValidationError(res, errors);
   }
 
   // find the recipe document
@@ -72,19 +65,10 @@ const favorite = async (req: Request, res: Response) => {
   const recipeId: string = req.params.id;
   const userId: string = req.currentUser._id;
 
-  // validate the text inputs
-  body("recipeId")
-    .notEmpty()
-    .withMessage("Recipe ID cannot be empty.")
-    .isMongoId();
-
   // find the validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      status: 400,
-      errors: errors.array(),
-    });
+    return sendValidationError(res, errors);
   }
 
   // find the recipe document
@@ -159,20 +143,11 @@ const getAll = async (req: Request, res: Response) => {
  */
 const getOne = (req: Request, res: Response) => {
   const id: string = req.params.id;
-  // validate the text inputs
-  check("id")
-    .notEmpty()
-    .withMessage("User ID cannot be empty.")
-    .isMongoId()
-    .withMessage("Invalid user ID.");
 
   // find the validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      status: 400,
-      errors: errors.array(),
-    });
+    return sendValidationError(res, errors);
   }
 
   User.findOne({ _id: id })
@@ -199,44 +174,22 @@ const getOne = (req: Request, res: Response) => {
  * @param req - Request object
  * @param res - Response object
  */
+//
 const createReview = async (req: Request, res: Response) => {
-  const { stars, review, user } = req.body;
+  const { stars, review, username } = req.body;
 
   const id: string = req.params.id;
-  // validate the text inputs
-  check("stars")
-    .notEmpty()
-    .withMessage("Stars rating cannot be empty.")
-    .isInt()
-    .withMessage("Star rating must be an integer")
-    .trim()
-    .escape();
-
-  check("review")
-    .notEmpty()
-    .withMessage("Review comment cannot be empty.")
-    .trim()
-    .escape();
-
-  check("user")
-    .notEmpty()
-    .withMessage("Username cannot be empty.")
-    .trim()
-    .escape();
 
   // find the validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
-      status: 400,
-      errors: errors.array(),
-    });
+    return sendValidationError(res, errors);
   }
   // first create the review
   const createdReview: ReviewDocument = await Review.create({
     stars,
     review,
-    author: user,
+    author: username,
   });
 
   if (createdReview) {
