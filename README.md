@@ -8,7 +8,7 @@ A application where users can share and save recipes.
 
 - Figma
 
-Contributors(s):
+Contributors(s):[Emmbrik](https://github.com/emmbrik)
 
 ### Backend REST API
 
