@@ -14,7 +14,7 @@ import sendValidationError from "../../utils";
  * @param res - Response object
  */
 const create = async (req: Request, res: Response) => {
-  const {
+  let {
     title,
     description,
     time,
@@ -22,7 +22,10 @@ const create = async (req: Request, res: Response) => {
     cusine,
     utensils,
     ingredients,
-  }: RecipeDocument = req.body;
+  } = req.body;
+
+  ingredients = Array.from(JSON.parse(ingredients));
+  console.log("ingredients: ", ingredients);
 
   if (!ingredients) {
     return res.status(400).json({
@@ -40,9 +43,9 @@ const create = async (req: Request, res: Response) => {
 
   const isValidIngredientsArray = ingredients.every((ingredient) => {
     return (
-      ingredient.type !== null &&
+      ingredient.item !== null &&
       ingredient.quantity !== null &&
-      typeof ingredient.type === "string" &&
+      typeof ingredient.item === "string" &&
       typeof ingredient.quantity === "string"
     );
   });
@@ -50,7 +53,7 @@ const create = async (req: Request, res: Response) => {
   if (!isValidIngredientsArray)
     return res.status(400).json({
       status: 400,
-      errors: ["Each ingredient object must have a type and a quantity."],
+      errors: ["Each ingredient object must have a item and a quantity."],
     });
 
   // validate the text inputs
@@ -79,6 +82,7 @@ const create = async (req: Request, res: Response) => {
     cusine,
     utensils,
     user: req.currentUser.username,
+    ingredients,
   });
 
   if (recipe) {

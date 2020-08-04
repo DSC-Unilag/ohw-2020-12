@@ -15,7 +15,7 @@ export interface RecipeDocument extends mongoose.Document {
   image?: string;
   ingredients?: [
     {
-      type: string;
+      item: string;
       quantity: string;
     }
   ];
@@ -37,7 +37,7 @@ const RecipeSchema: mongoose.Schema = new Schema({
   description: String,
   ingredients: [
     {
-      type: String,
+      item: String,
       quantity: String,
     },
   ],
