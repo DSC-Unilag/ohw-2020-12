@@ -22,14 +22,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    final height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return ViewModelProvider<SignUpVIewModel>.withConsumer(
         viewModel: SignUpVIewModel(),
         builder: (context, model, child) {
@@ -41,13 +35,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: height,
                 child: ListView(
                   children: [
-                    recipieSaverCard(width, height - 200),
+                    recipieSaverCard(width, height - 300),
                     Container(
                       decoration: kborderRadius,
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 10,
+                            height: 20,
                           ),
                           textInput1('Sign in to Recipe Saver'),
                           SizedBox(
@@ -111,19 +105,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 10,
                           ),
-                          model.busy ? CircularProgressIndicator(strokeWidth: 3,) : buttons(
-                              height: 56,
-                              width: 314,
-                              boxColor: '#FE6D73',
-                              textColor: '#F2F2F2',
-                              text: 'Sign In',
-                              onPressed: () {
-                                model.SignUpWithEmailAndPassword(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                    fullname: _fullnameController.text,
-                                    username: _usernameController.text);
-                              })
+                          model.busy
+                              ? CircularProgressIndicator(
+                                  strokeWidth: 3,
+                                )
+                              : buttons(
+                                  height: 56,
+                                  width: 314,
+                                  boxColor: '#FE6D73',
+                                  textColor: '#F2F2F2',
+                                  text: 'Sign In',
+                                  onPressed: () {
+                                    model.SignUpWithEmailAndPassword(
+                                        email: _emailController.text,
+                                        password: _passwordController.text,
+                                        fullname: _fullnameController.text,
+                                        username: _usernameController.text);
+                                  })
                         ],
                       ),
                     )

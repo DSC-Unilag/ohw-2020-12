@@ -29,84 +29,87 @@ class _ProfileScreenState extends State<ProfileScreen>
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return ViewModelProvider<BaseModel>.withConsumer(
-      viewModel: BaseModel(),
-      builder: (context, model, child) {
-        return Container(
-          height: height,
-          width: width,
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  IconButton(icon: Icon(Icons.person), onPressed: () {}),
-                  Text(
-                    'Profile',
-                    style: kDetailtextStyle.copyWith(fontSize: 18),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+        viewModel: BaseModel(),
+        builder: (context, model, child) {
+          return Container(
+            height: height,
+            width: width,
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Column(
+              children: [
+                Row(
                   children: [
-                    Center(
-                      child: CircleAvatar(
-                        radius: 80,
-                        backgroundImage: CachedNetworkImageProvider(model.currentUser.imageurl ?? ""),
+                    IconButton(icon: Icon(Icons.person), onPressed: () {}),
+                    Text(
+                      'Profile',
+                      style: kDetailtextStyle.copyWith(fontSize: 18),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: CircleAvatar(
+                          radius: 80,
+                          backgroundImage: model.currentUser.imageurl != null
+                              ? CachedNetworkImageProvider(
+                                  model.currentUser.imageurl)
+                              : AssetImage('assets/images/slice_2.png'),
+                        ),
                       ),
-                    ),
-                    Center(
-                      child: Text(
-                        model.currentUser.fullname,
-                        style: kDetailtextStyle.copyWith(
-                            color: Hexcolor('#000000'),
-                            fontWeight: FontWeight.w500),
+                      Center(
+                        child: Text(
+                          model.currentUser.fullname,
+                          style: kDetailtextStyle.copyWith(
+                              color: Hexcolor('#000000'),
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    Center(
-                      child: Text(
-                        model.currentUser.email,
-                        style: kDetailtextStyle.copyWith(
-                            color: Hexcolor('#333333'),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w300),
+                      Center(
+                        child: Text(
+                          model.currentUser.email,
+                          style: kDetailtextStyle.copyWith(
+                              color: Hexcolor('#333333'),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300),
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditProfilePage()));
-                          },
-                          padding: EdgeInsets.all(10),
-                          color: Hexcolor('#fE6D73'),
-                          child: Text(
-                            'Edit Profile',
-                            style: headingtextStyle.copyWith(
-                                fontSize: 18, color: Hexcolor('#F2F2F2')),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditProfilePage()));
+                            },
+                            padding: EdgeInsets.all(10),
+                            color: Hexcolor('#fE6D73'),
+                            child: Text(
+                              'Edit Profile',
+                              style: headingtextStyle.copyWith(
+                                  fontSize: 18, color: Hexcolor('#F2F2F2')),
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
+                          SizedBox(
+                            width: 20,
+                          ),
 //                    RaisedButton(
 //                      padding: EdgeInsets.all(10),
 //                      shape: RoundedRectangleBorder(
@@ -118,27 +121,28 @@ class _ProfileScreenState extends State<ProfileScreen>
 //                        color: Hexcolor('#F2F2F2'),
 //                      ),
 //                    )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Center(
-                      child: Text(
-                        'Bio',
-                        style: kotherHeadertextStyle.copyWith(
-                            fontWeight: FontWeight.bold),
+                        ],
                       ),
-                    ),
-                    Center(
-                      child: Text(
-                        model.currentUser.bio ?? "Click edit profile to fill in your bio",
-                        style: kotherHeadertextStyle.copyWith(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 12,
-                            color: Hexcolor('#333333')),
+                      SizedBox(
+                        height: 30,
                       ),
-                    ),
+                      Center(
+                        child: Text(
+                          'Bio',
+                          style: kotherHeadertextStyle.copyWith(
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          model.currentUser.bio ??
+                              "Click edit profile to fill in your bio",
+                          style: kotherHeadertextStyle.copyWith(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12,
+                              color: Hexcolor('#333333')),
+                        ),
+                      ),
 //                    SizedBox(
 //                      height: 30,
 //                    ),
@@ -154,14 +158,13 @@ class _ProfileScreenState extends State<ProfileScreen>
 //                    SizedBox(
 //                      height: 30,
 //                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }
-    );
+              ],
+            ),
+          );
+        });
   }
 }
 
