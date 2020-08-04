@@ -109,9 +109,9 @@ class _InfoPageState extends State<InfoPage> {
             SizedBox(
               height: 20,
             ),
-            Text('Process:',
-                style: kDetailtextStyle.copyWith(
-                    fontSize: 18, fontWeight: FontWeight.bold))
+//            Text('Process:',
+//                style: kDetailtextStyle.copyWith(
+//                    fontSize: 18, fontWeight: FontWeight.bold))
           ],
         ),
       ),

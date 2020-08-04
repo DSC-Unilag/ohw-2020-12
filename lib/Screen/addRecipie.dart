@@ -65,7 +65,7 @@ class _AddRecipePageState extends State<AddRecipePage> {
                         CircleAvatar(
                           radius: 30,
                           backgroundImage:
-                              AssetImage('assets/images/slice_2.png'),
+                          model.currentUser.imageurl == null ?AssetImage('assets/images/slice_2.png') : NetworkImage(model.currentUser.imageurl)
                         ),
                         SizedBox(
                           width: 20,

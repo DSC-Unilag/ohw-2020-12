@@ -1,35 +1,32 @@
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:recipesaver/constants.dart';
+import 'package:recipesaver/model/recipe.dart';
 import 'package:recipesaver/model/web_recipe.dart';
+import 'package:recipesaver/viewmodel/base_model.dart';
 
-class WebRecipeViewModel {
-  WebRecipe _webRecipe;
+class WebRecipeViewModel  extends BaseModel{
 
-  WebRecipeViewModel({WebRecipe webRecipe}) : _webRecipe = webRecipe;
+  List<Recipe> _recipe;
+  List<Recipe> _savedrecipe;
 
-  List<String> get ingredients {
-    return _webRecipe.ingredients;
+  List<Recipe> get recipe => _recipe;
+  List<Recipe> get savedrecipe => _savedrecipe;
+
+  Future fetchRecipe() async{
+    setBusy(true);
+    var recipeResult = await firestoreService.getDiscoverRecipeOnceOff();
+    if(recipeResult is List<Recipe>){
+      setBusy(false);
+      _recipe = recipeResult;
+      notifyListeners();
+    }else{
+      setBusy(false);
+      Fluttertoast.showToast(msg: recipeResult);
+    }
   }
-
-  List<String> get reviews {
-    return _webRecipe.reviews;
+  Future signout() async{
+    await authenticationService.signout();
+    navigationService.pop();
+    navigationService.navigateTo(StartUpVieRoute);
   }
-
-  String get id {
-    return _webRecipe.id;
-  }
-
-  String get title {
-    return _webRecipe.title;
-  }
-
-  String get instructions {
-    return _webRecipe.instructions;
-  }
-
-  String get image {
-    return _webRecipe.image;
-  }
-  String get createdAt {
-    return _webRecipe.createdAt;
-  }
-
 }

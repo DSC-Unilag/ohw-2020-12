@@ -1,0 +1,195 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'poppins', sans-serif;
+}
+.food-profile{
+    width: 90%;
+    margin: 7em auto 4em auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.food-profile-imgdiv{
+    width: 55%;
+}
+.food-profile-img{
+    width: 100%;
+}
+.profile-details{
+    width: 35%;
+}
+.ratings, .timing{
+    display: flex;
+    margin: 2em 0;
+}
+.garlic-steak{
+    font-size: 50px;
+}
+.star{
+    margin: 5px;
+}
+.time{
+    padding: 0 20px 0px 20px;
+}
+.mid{
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+.user, .user-subdiv{
+    display: flex;
+}
+.user{
+    justify-content: space-between;
+    padding: 20px;
+    padding: 20px 0px;
+}
+.userpic{
+    padding-right: 20px;
+}
+.userpicimg{
+    width: 90%;
+}
+.followbtn{
+    padding: 10px;
+    border: 1px solid #ededed;
+    border-radius: 41px;
+    background-color: #EDEDED;
+    font-family: 'poppins', sans-serif;
+    cursor: pointer;
+}
+
+.ingredients-div{
+    margin: 60px 0 0 0; 
+    width : 70%;
+    margin: auto;
+}
+.left, .right, .down{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 20px 0px;
+}
+.meat-div, .produce-div, .bread-baked-goods, .dairy-div, .bakingspices, .empty{
+    width: 40%;
+}
+.similar-recipes{
+    padding-top: 5em;
+    width: 85%;
+    margin: auto;
+}
+.similar{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.similar-recipes-h2{
+    margin: 0 0 30px 0;
+}
+
+.reviews{
+    width: 85%;
+    margin: auto;
+    margin-top: 5em;
+    line-height: 40px;
+}
+.first-review, .part1{
+    display: flex;
+}
+.first-review{
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+.nameandcomment{
+    margin: 0px 20px;
+}
+.timeandlike{
+    color: gray;
+}
+
+
+
+
+@media screen and (max-width: 800px){
+    .food-profile-imgdiv{
+        width: 100%;
+    }
+    .food-profile-img{
+        width: 100%;
+    }
+    .profile-details{
+        width: 100%;
+    }
+    .ratings, .timing{
+        margin: 1.8em 0;
+    }
+    .garlic-steak{
+        font-size: 30px;
+    }
+    .userpic{
+        padding-right: 10px;
+    }
+    .userpicimg{
+        width: 90%;
+    }
+    .followbtn{
+        padding: 10px;
+        border: 1px solid #ededed;
+        border-radius: 41px;
+        background-color: #EDEDED;
+        font-family: 'poppins', sans-serif;
+        cursor: pointer;
+    }
+    
+    .ingredients-div{
+        margin: 40px 0 0 0; 
+        width : 90%;
+        margin: auto;
+    }
+    .left, .right, .down{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 20px 0px;
+    }
+    .meat-div, .produce-div, .bread-baked-goods, .dairy-div, .bakingspices, .empty{
+        width: 40%;
+        font-size: 12px;
+    }
+    .similar-recipes{
+        padding-top: 5em;
+        width: 90%;
+        margin: auto;
+    }
+    .similar{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .similar-recipes-h2{
+        margin: 0 0 30px 0;
+    }
+    .first-similar{
+        margin-bottom: 30px;
+    }
+    .reviews{
+        width: 90%;
+        margin: auto;
+    }
+    .first-review, .part1{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .first-review{
+        justify-content: space-between;
+        margin: 20px 0px;
+    }
+    .nameandcomment{
+        margin: 0px 0px;
+    }
+    .timeandlike{
+        color: gray;
+    }
+}

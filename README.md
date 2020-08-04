@@ -8,7 +8,7 @@ A application where users can share and save recipes.
 
 - Figma
 
-Contributors(s):
+Contributors(s):[Emmbrik](https://github.com/emmbrik)
 
 ### Backend REST API
 
@@ -31,14 +31,24 @@ Contributor(s): [Olusamimaths](https://github.com/Olusamimaths/)
 - Javascript fetch api
 - Local Storage
 
-Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI)
+
+Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev](https://github.com/MirakleDdev)
 
 ### Android and iOS Apps
 
 - Dart
 - Flutter
 
-Contributor(s): [Yczar](https://github.com/Yczar)
+
+
+
+
+![ezgif com-optimize-min](https://user-images.githubusercontent.com/32166619/89283925-df8f0100-d645-11ea-95f1-d2eaa719d284.gif)
+download Android app [here](https://drive.google.com/file/d/1HY10UdhI_YM819OrmN7LITKe2e0DjWSd/view?usp=drivesdk)
+
+Contributor(s): [Yczar](https://github.com/Yczar),
+                [Oyalekephilip](https://github.com/oyalekephilip)
+                
 
 # Features
 
