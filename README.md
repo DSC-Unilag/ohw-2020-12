@@ -38,7 +38,7 @@ Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev]
 - Dart
 - Flutter
 
-Contributor(s): [Yczar](https://github.com/Yczar)
+Contributor(s): [Yczar](https://github.com/Yczar),
                 [Oyalekephilip](https://github.com/oyalekephilip)
                 
 
