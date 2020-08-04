@@ -14,18 +14,16 @@ import sendValidationError from "../../utils";
  * @param res - Response object
  */
 const create = async (req: Request, res: Response) => {
-  let {
+  const {
     title,
     description,
     time,
     category,
     cusine,
     utensils,
+    instructions,
     ingredients,
   } = req.body;
-
-  ingredients = Array.from(JSON.parse(ingredients));
-  console.log("ingredients: ", ingredients);
 
   if (!ingredients) {
     return res.status(400).json({
@@ -83,6 +81,7 @@ const create = async (req: Request, res: Response) => {
     utensils,
     user: req.currentUser.username,
     ingredients,
+    instructions,
   });
 
   if (recipe) {

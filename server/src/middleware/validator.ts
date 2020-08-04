@@ -85,6 +85,16 @@ validator.createRecipe = [
     .trim()
     .escape(),
 
+  body("instructions")
+    .exists()
+    .withMessage("Instructions must be provided")
+    .notEmpty()
+    .withMessage("Recipe instructions cannot be empty")
+    .isLength({ min: 10 })
+    .withMessage("Instructions must be at least 10 characters long.")
+    .trim()
+    .escape(),
+
   body("time")
     .exists()
     .withMessage("Time duration must be provided")
