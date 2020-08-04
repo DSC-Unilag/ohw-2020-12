@@ -8,7 +8,7 @@
     "dev": "tsc && node dist/server.js",
     "build": "tsc",
     "start:watch": "nodemon",
-    "test": "jest",
+    "test": "jest  --detectOpenHandles --watchAll",
     "jest:init": "jest --init"
   },
   "repository": {

@@ -23,13 +23,14 @@ const login = async (req: Request, res: Response) => {
         status: 200,
         user,
         token,
+        message: "Successfully logged in.",
       });
     }
   }
   // did not register | did not give correct password
   return res.status(400).json({
     status: 400,
-    error: "These credentials do not match our records.",
+    errors: ["These credentials do not match our records."],
   });
 };
 
@@ -52,13 +53,21 @@ const register = async (req: Request, res: Response) => {
     return sendValidationError(res, errors);
   }
 
-  const userExists: UserDocument = await User.findOne({ email });
+  const emailExists: UserDocument = await User.findOne({ email });
 
   // registered before? What are they looking for again?
-  if (userExists) {
+  if (emailExists) {
     return res.status(400).json({
       status: 400,
-      error: "User with the given email already exist. Please login.",
+      errors: ["User with the given email already exist. Please login."],
+    });
+  }
+
+  const usernameExists: UserDocument = await User.findOne({ username });
+  if (usernameExists) {
+    return res.status(400).json({
+      status: 400,
+      errors: ["User with the given username already exist. Please login."],
     });
   }
 
