@@ -43,8 +43,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               SizedBox(
                                 height: 10,
                               ),
-                              googlebuttons(54, 315, '#3246FA', '#F2F2F2',
-                                  'Sign in with Google'),
+//                              InkWell(
+//                                onTap: (){
+//                                  model.signInWithGoogle();
+//                                },
+//                                child: googlebuttons(54, 315, '#3246FA', '#F2F2F2',
+//                                    'Sign in with Google'),
+//                              ),
                               SizedBox(
                                 height: 40,
                               ),
@@ -89,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

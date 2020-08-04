@@ -5,10 +5,10 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../constants.dart';
 
-Widget recipieCards(
-    double height, String boximage, String recipiename, int likes) {
+Widget recipieCards({
+    double height, String boximage, String recipiename, int likes, Function onPressed}) {
   return GestureDetector(
-    onTap: () {},
+    onTap: onPressed,
     child: Container(
       height: height * 0.6,
       width: 360,
@@ -23,7 +23,7 @@ Widget recipieCards(
               borderRadius: BorderRadius.circular(14),
             ),
             child: boximage == null ? Container() : CachedNetworkImage(
-              imageUrl: boximage,
+              imageUrl: boximage, color: Colors.black.withOpacity(0.4), colorBlendMode: BlendMode.darken,
               placeholder: (_,__) => SizedBox(height: height * 0.58,child: Center(child: CircularProgressIndicator(strokeWidth: 3, valueColor: AlwaysStoppedAnimation(Colors.red),),)),
               height: height * 0.58,
               fit: BoxFit.fill,

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipesaver/Screen/homePage.dart';
 import 'package:recipesaver/Screen/signUpScreen.dart';
+import 'package:recipesaver/Screen/startup_view.dart';
 
 import 'Screen/home.dart';
 import 'Screen/loginScreen.dart';
@@ -28,6 +29,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: HomeScreen(),
+      );
+    case StartUpVieRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: StartUpView(),
       );
 
     default:

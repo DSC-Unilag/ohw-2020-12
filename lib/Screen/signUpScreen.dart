@@ -53,8 +53,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           SizedBox(
                             height: 10,
                           ),
-                          googlebuttons(54, 315, '#3246FA', '#F2F2F2',
-                              'Sign in with Google'),
+//                          googlebuttons(54, 315, '#3246FA', '#F2F2F2',
+//                              'Sign in with Google'),
                           SizedBox(
                             height: 35,
                           ),

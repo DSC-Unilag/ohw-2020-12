@@ -33,7 +33,7 @@ class _SavedRecipeState extends State<SavedRecipe> {
                   Spacer(),
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/images/slice_2.png'),
+                    backgroundImage: model.currentUser.imageurl == null ?AssetImage('assets/images/slice_2.png') : NetworkImage(model.currentUser.imageurl),
                   ),
                   SizedBox(
                     width: 20,

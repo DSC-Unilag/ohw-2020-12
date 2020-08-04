@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider_architecture/_viewmodel_provider.dart';
 import 'package:recipesaver/Screen/editProfile.dart';
+import 'package:recipesaver/viewmodel/base_model.dart';
 
 import '../constants.dart';
 
@@ -25,131 +28,139 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Container(
-      height: height,
-      width: width,
-      padding: const EdgeInsets.only(right: 20.0),
-      child: ListView(
-        children: [
-          Row(
+    return ViewModelProvider<BaseModel>.withConsumer(
+      viewModel: BaseModel(),
+      builder: (context, model, child) {
+        return Container(
+          height: height,
+          width: width,
+          padding: const EdgeInsets.only(right: 20.0),
+          child: Column(
             children: [
-              IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
-              Text(
-                'Profile',
-                style: kDetailtextStyle.copyWith(fontSize: 18),
+              Row(
+                children: [
+                  IconButton(icon: Icon(Icons.person), onPressed: () {}),
+                  Text(
+                    'Profile',
+                    style: kDetailtextStyle.copyWith(fontSize: 18),
+                  ),
+                ],
               ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: CircleAvatar(
-                    radius: 80,
-                    backgroundImage: AssetImage(
-                      'assets/images/slice_2.png',
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    'Brian Parker',
-                    style: kDetailtextStyle.copyWith(
-                        color: Hexcolor('#000000'),
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    'brianparker@gmail.com',
-                    style: kDetailtextStyle.copyWith(
-                        color: Hexcolor('#333333'),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 0),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => EditProfilePage()));
-                      },
-                      padding: EdgeInsets.all(10),
-                      color: Hexcolor('#fE6D73'),
+                    Center(
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage: CachedNetworkImageProvider(model.currentUser.imageurl ?? ""),
+                      ),
+                    ),
+                    Center(
                       child: Text(
-                        'Edit Profile',
-                        style: headingtextStyle.copyWith(
-                            fontSize: 18, color: Hexcolor('#F2F2F2')),
+                        model.currentUser.fullname,
+                        style: kDetailtextStyle.copyWith(
+                            color: Hexcolor('#000000'),
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        model.currentUser.email,
+                        style: kDetailtextStyle.copyWith(
+                            color: Hexcolor('#333333'),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300),
                       ),
                     ),
                     SizedBox(
-                      width: 20,
+                      height: 10,
                     ),
-                    RaisedButton(
-                      padding: EdgeInsets.all(10),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      color: Hexcolor('#fE6D73'),
-                      onPressed: () {},
-                      child: Icon(
-                        Icons.settings,
-                        color: Hexcolor('#F2F2F2'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfilePage()));
+                          },
+                          padding: EdgeInsets.all(10),
+                          color: Hexcolor('#fE6D73'),
+                          child: Text(
+                            'Edit Profile',
+                            style: headingtextStyle.copyWith(
+                                fontSize: 18, color: Hexcolor('#F2F2F2')),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+//                    RaisedButton(
+//                      padding: EdgeInsets.all(10),
+//                      shape: RoundedRectangleBorder(
+//                          borderRadius: BorderRadius.circular(8)),
+//                      color: Hexcolor('#fE6D73'),
+//                      onPressed: () {},
+//                      child: Icon(
+//                        Icons.settings,
+//                        color: Hexcolor('#F2F2F2'),
+//                      ),
+//                    )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: Text(
+                        'Bio',
+                        style: kotherHeadertextStyle.copyWith(
+                            fontWeight: FontWeight.bold),
                       ),
-                    )
+                    ),
+                    Center(
+                      child: Text(
+                        model.currentUser.bio ?? "Click edit profile to fill in your bio",
+                        style: kotherHeadertextStyle.copyWith(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 12,
+                            color: Hexcolor('#333333')),
+                      ),
+                    ),
+//                    SizedBox(
+//                      height: 30,
+//                    ),
+//                    littleInfo('assets/images/recipieProfile.svg', model.recipe.length == null ? "Loading" : model.recipe.length, 'Recipies'),
+//                    SizedBox(
+//                      height: 30,
+//                    ),
+//                    littleInfo('assets/images/starsProfile.svg', 4, 'likes'),
+//                    SizedBox(
+//                      height: 30,
+//                    ),
+//                    littleInfo('assets/images/savesForprofile.svg', 20, 'saves'),
+//                    SizedBox(
+//                      height: 30,
+//                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Experience',
-                  style: kotherHeadertextStyle.copyWith(
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue tincidunt egestas ultricies ut eget sed at. Non ut id amet adipiscing aliquet amet. Orci risus ullamcorper integer amet, mattis id. Augue.',
-                  style: kotherHeadertextStyle.copyWith(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 12,
-                      color: Hexcolor('#333333')),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                littleInfo('assets/images/recipieProfile.svg', 4, 'Recipies'),
-                SizedBox(
-                  height: 30,
-                ),
-                littleInfo('assets/images/starsProfile.svg', 4, 'likes'),
-                SizedBox(
-                  height: 30,
-                ),
-                littleInfo('assets/images/savesForprofile.svg', 20, 'saves'),
-                SizedBox(
-                  height: 30,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      }
     );
   }
 }

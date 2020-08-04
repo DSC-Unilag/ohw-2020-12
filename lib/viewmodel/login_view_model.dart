@@ -36,5 +36,8 @@ class LoginViewModel extends BaseModel {
       }
     }
   }
+  Future signInWithGoogle() async{
+    await authenticationService.signinwithGoogle();
+  }
 
 }
