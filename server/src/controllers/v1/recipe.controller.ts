@@ -1,6 +1,6 @@
 import Recipe, { RecipeDocument } from "../../models/Recipe";
 import { Request, Response } from "express";
-import { validationResult, Result, ValidationError } from "express-validator";
+import { validationResult } from "express-validator";
 import { dataUri } from "../../middleware/multer";
 import { uploader } from "../../config/cloudinary.config";
 import Category from "../../models/Category";
@@ -24,6 +24,8 @@ const create = async (req: Request, res: Response) => {
     instructions,
     ingredients,
   } = req.body;
+
+  // ingredients = Array.from(JSON.parse(ingredients));
 
   if (!ingredients) {
     return res.status(400).json({
@@ -94,7 +96,9 @@ const create = async (req: Request, res: Response) => {
       if (!createdCategory) {
         res.status(500).json({
           status: 500,
-          error: "Something went wrong. Could not add recipe to the category.",
+          errors: [
+            "Something went wrong. Could not add recipe to the category.",
+          ],
         });
       }
     } catch (error) {
@@ -112,7 +116,7 @@ const create = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not create recipe.",
+    errors: ["Something went wrong. Could not create recipe."],
   });
 };
 
