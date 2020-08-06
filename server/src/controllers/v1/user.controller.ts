@@ -28,7 +28,7 @@ const saveRecipe = async (req: Request, res: Response) => {
     if (user.saved_recipes.includes(recipeId)) {
       return res.status(400).json({
         status: 400,
-        error: "Bad Request. Recipe already saved.",
+        errors: ["Bad Request. Recipe already saved."],
       });
     }
     // update the user
@@ -52,7 +52,7 @@ const saveRecipe = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not save recipe.",
+    errors: ["Something went wrong. Could not save recipe."],
   });
 };
 
@@ -80,7 +80,7 @@ const favorite = async (req: Request, res: Response) => {
     if (user.favorite_recipes.includes(recipeId)) {
       return res.status(400).json({
         status: 400,
-        error: "Bad Request. Recipe already favorite.",
+        errors: ["Bad Request. Recipe already favorite."],
       });
     }
     // update the user
@@ -103,7 +103,7 @@ const favorite = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not add recipe to favorites.",
+    errors: ["Something went wrong. Could not add recipe to favorites."],
   });
 };
 
@@ -132,7 +132,7 @@ const getAll = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not get all users.",
+    errors: ["Something went wrong. Could not get all users."],
   });
 };
 
@@ -164,7 +164,7 @@ const getOne = (req: Request, res: Response) => {
     .catch((e) => {
       return res.status(500).json({
         status: 500,
-        error: "Something went wrong. Could not get the user.",
+        errors: ["Something went wrong. Could not get the user."],
       });
     });
 };
@@ -213,7 +213,7 @@ const createReview = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not review recipe.",
+    errors: ["Something went wrong. Could not review recipe."],
   });
 };
 

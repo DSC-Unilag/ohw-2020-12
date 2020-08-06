@@ -10,13 +10,11 @@ describe("The registration flow", () => {
   beforeAll(async () => {
     jest.setTimeout(10000);
     // connect to the test database
-    await mongoose
-      .connect(process.env.TEST_DB, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-      })
-      .catch((err) => console.error(err));
+    await mongoose.connect(process.env.TEST_DB, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    });
     // clear the database
     await User.deleteMany({});
   });
@@ -209,13 +207,11 @@ describe("The login flow", () => {
   beforeAll(async () => {
     jest.setTimeout(10000);
     // connect to the test database
-    await mongoose
-      .connect(process.env.TEST_DB, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-      })
-      .catch((err) => console.error(err));
+    await mongoose.connect(process.env.TEST_DB, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    });
     // clear the database
     await User.deleteMany({});
   });
