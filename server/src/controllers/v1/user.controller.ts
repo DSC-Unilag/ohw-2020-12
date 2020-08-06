@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import User, { UserDocument } from "../../models/User";
 import Review, { ReviewDocument } from "../../models/Review";
 import { validationResult } from "express-validator";
-import sendValidationError from "../../utils";
+import sendValidationError from "../../utils/errorReporter";
 
 /**
  * this method allows saving a recipe by an authenticated user

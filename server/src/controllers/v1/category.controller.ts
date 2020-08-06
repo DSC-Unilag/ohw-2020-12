@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Category, { CategoryDocument } from "../../models/Category";
 import { validationResult } from "express-validator";
-import sendValidationError from "../../utils";
+import sendValidationError from "../../utils/errorReporter";
 
 /**
  * This method gets all the categories

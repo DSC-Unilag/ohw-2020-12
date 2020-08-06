@@ -4,7 +4,7 @@ import { validationResult } from "express-validator";
 import { dataUri } from "../../middleware/multer";
 import { uploader } from "../../config/cloudinary.config";
 import Category from "../../models/Category";
-import sendValidationError from "../../utils";
+import sendValidationError from "../../utils/errorReporter";
 
 // TODO: implement add ingredients
 
@@ -32,6 +32,11 @@ const create = async (req: Request, res: Response) => {
       errors: ["Ingredients must be provided."],
     });
   }
+
+  /**
+   * if it a testing environment, ingredients array will be provided as a JSON string,
+   * so we parse it
+   */
   if (process.env.NODE_ENV === "test") {
     ingredients = Array.from(JSON.parse(ingredients));
   }
@@ -146,7 +151,7 @@ const getAll = async (req: Request, res: Response) => {
 
   return res.status(500).json({
     status: 500,
-    error: "Something went wrong. Could not get all recipe.",
+    errors: ["Something went wrong. Could not get all recipe."],
   });
 };
 
@@ -176,7 +181,7 @@ const getOne = (req: Request, res: Response) => {
     .catch((e) => {
       return res.status(500).json({
         status: 500,
-        error: "Something went wrong. Could not get the recipe.",
+        errors: ["Something went wrong. Could not get the recipe."],
       });
     });
 };

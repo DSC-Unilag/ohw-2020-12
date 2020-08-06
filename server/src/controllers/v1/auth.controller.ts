@@ -1,7 +1,7 @@
 import User, { UserDocument } from "../../models/User";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import sendValidationError from "../../utils";
+import sendValidationError from "../../utils/errorReporter";
 
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;

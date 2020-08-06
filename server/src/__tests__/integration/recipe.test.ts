@@ -5,6 +5,7 @@ import mongoose, { mongo } from "mongoose";
 import jwt from "jsonwebtoken";
 import path from "path";
 import configuration from "../../config/config";
+import data from "../../utils/data";
 
 const image = path.join(__dirname, "frittata.jpg");
 process.env.NODE_ENV = "test";
@@ -157,5 +158,120 @@ describe("Recipe creation", () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
+  });
+});
+
+describe("Recipe retrieving process", () => {
+  beforeAll(async () => {
+    jest.setTimeout(10000);
+    // connect to the test database
+    await mongoose
+      .connect(process.env.TEST_DB, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+      })
+      .catch((err) => console.error(err));
+    // clear the database
+    await Recipe.deleteMany({});
+  });
+
+  it("should get a given recipe by id", async () => {
+    // Arrange
+    const { _id: id } = await Recipe.create(data[0]);
+
+    // Act
+    const response = await supertest(app).get(`/api/v1/recipe/${id}`);
+
+    // Assert
+    expect(response.status).toBe(302);
+    expect(response.body.status).toBe(302);
+    expect(response.body.message).toBe("Successfully got a recipe.");
+    expect(response.body.recipe).toBeDefined();
+  });
+
+  it("should not get a recipe if an id is not provided", async () => {
+    // Arrange
+    await Recipe.create(data[0]);
+
+    // Act
+    const response = await supertest(app).get(`/api/v1/recipe/`);
+
+    // Assert
+    expect(response.status).toBe(404);
+  });
+
+  it("should not get a recipe if an invalid id is provided", async () => {
+    // Arrange
+    await Recipe.create(data[0]);
+
+    // Act
+    const response = await supertest(app).get(`/api/v1/recipe/kdkduedkkue`);
+
+    // Assert
+    expect(response.status).toBe(400);
+    expect(response.body.status).toBe(400);
+    expect(response.body.errors[0].msg).toBe("Invalid recipe ID.");
+    expect(response.body.recipe).toBeUndefined();
+  });
+
+  it("should get all the recipes in the application", async () => {
+    // Arrange
+    await Recipe.create(data[0]);
+    await Recipe.create(data[1]);
+    await Recipe.create(data[2]);
+
+    // Act
+    const response = await supertest(app).get(`/api/v1/recipe/all`);
+
+    // Assert
+    expect(response.status).toBe(302);
+    expect(response.body.status).toBe(302);
+    expect(response.body.message).toBe("Successfully got all recipes.");
+    expect(response.body.recipes).toBeDefined();
+  });
+
+  it("should search for recipes and return those that match a search string", async () => {
+    // Arrange
+    await Recipe.create(data[0]);
+    await Recipe.create(data[1]);
+    await Recipe.create(data[2]);
+
+    // Act
+    const response = await supertest(app).post(`/api/v1/recipe/search`).send({
+      searchString: "chinese",
+    });
+
+    // Assert
+    expect(response.status).toBe(302);
+    expect(response.body.status).toBe(302);
+    expect(response.body.message).toBe(
+      "Successfully got all recipes matching your search."
+    );
+    expect(response.body.result).toBeDefined();
+  });
+
+  it("should not return any recipe if a search string is not provided.", async () => {
+    // Arrange
+    await Recipe.create(data[0]);
+    await Recipe.create(data[1]);
+    await Recipe.create(data[2]);
+
+    // Act
+    const response = await supertest(app).post(`/api/v1/recipe/search`).send({
+      searchString: "",
+    });
+
+    // Assert
+    expect(response.status).toBe(400);
+    expect(response.body.status).toBe(400);
+    expect(response.body.errors).toBeDefined();
+    expect(response.body.recipes).toBeUndefined();
+  });
+
+  afterAll(async () => {
+    // clear the database
+    await Recipe.deleteMany({});
   });
 });
