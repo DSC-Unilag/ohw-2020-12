@@ -38,7 +38,7 @@ const saveRecipe = async (req: Request, res: Response) => {
       // {new: true} to return the updated document, by default it returns the original
       { new: true }
     );
-    // delete updatedUser.password;
+    updatedUser.password = undefined;
     // return the updated recipe
     if (updatedUser) {
       updatedUser.password = undefined;

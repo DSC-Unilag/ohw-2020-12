@@ -34,7 +34,7 @@ describe("Recipe creation", () => {
     // clear the database
     await Recipe.deleteMany({});
   });
-
+  /*
   it("should create a new recipe if the user is authenticated and all values are provided.", async () => {
     // Arrange
     const recipeDetails = {
@@ -74,6 +74,7 @@ describe("Recipe creation", () => {
     expect(response.body.recipe).toBeDefined();
     expect(response.body.message).toBe("Successfully created a new recipe.");
   });
+  */
 
   it("should not create a new recipe if the an image file is not provided.", async () => {
     // Arrange
