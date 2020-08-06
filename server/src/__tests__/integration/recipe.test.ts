@@ -1,7 +1,7 @@
 import app from "../../app";
 import supertest from "supertest";
 import Recipe from "../../models/Recipe";
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import path from "path";
 import configuration from "../../config/config";
@@ -23,14 +23,12 @@ describe("Recipe creation", () => {
   beforeAll(async () => {
     jest.setTimeout(10000);
     // connect to the test database
-    await mongoose
-      .connect(process.env.TEST_DB, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      })
-      .catch((err) => console.error(err));
+    await mongoose.connect(process.env.TEST_DB, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    });
     // clear the database
     await Recipe.deleteMany({});
   });

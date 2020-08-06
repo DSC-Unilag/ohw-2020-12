@@ -50,7 +50,7 @@ const data = [
     time: "30mins",
     image:
       "http://res.cloudinary.com/dxrf22kom/image/upload/v1596537270/mmtcdamm0pnjvolirnhl.jpg",
-    category: "breakfast",
+    category: "lunch",
     ownerId: "5f225e947001f01afce98af7",
     cusine: "Chinese",
     utensils: "frying pan",
