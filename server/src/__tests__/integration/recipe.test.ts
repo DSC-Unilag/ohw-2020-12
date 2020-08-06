@@ -1,20 +1,21 @@
 import app from "../../app";
 import supertest from "supertest";
 import Recipe from "../../models/Recipe";
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import jwt from "jsonwebtoken";
 import path from "path";
+import configuration from "../../config/config";
 
-const image = path.join(__dirname, "image.jpg");
+const image = path.join(__dirname, "frittata.jpg");
 process.env.NODE_ENV = "test";
-const jwtSecret = process.env.JWT_KEY;
+const { JWT_KEY } = configuration("test");
 
 const payload = {
   email: "johndoe@gmail.com",
   _id: mongoose.Types.ObjectId(),
   username: "Johny",
 };
-const token = jwt.sign(payload, jwtSecret, { expiresIn: "1h" });
+const token = jwt.sign(payload, JWT_KEY, { expiresIn: "1h" });
 
 // REGISTRATION
 describe("Recipe creation", () => {
@@ -31,6 +32,46 @@ describe("Recipe creation", () => {
       .catch((err) => console.error(err));
     // clear the database
     await Recipe.deleteMany({});
+  });
+
+  it("should create a new recipe if the user is authenticated and all values are provided.", async () => {
+    // Arrange
+    const recipeDetails = {
+      title: "test recipe",
+      description: "A wonderful recipe",
+      time: "10mins",
+      category: "Lunch",
+      cusine: "French",
+      utensils: "Frying pan",
+      instructions: "Fry the damn thin!",
+      ingredients: [{ item: "oil", quantity: "1 ounce" }],
+    };
+
+    // Act
+    const response = await supertest(app)
+      .post("/api/v1/recipe/create")
+      .set({
+        Accept: "multipart/form-data",
+        authorization: `Bearer ${token}`,
+      })
+      .attach("image", image)
+      .field("title", recipeDetails.title)
+      .field("description", recipeDetails.description)
+      .field("time", recipeDetails.time)
+      .field("category", recipeDetails.category)
+      .field("cusine", recipeDetails.cusine)
+      .field("utensils", recipeDetails.utensils)
+      .field("instructions", recipeDetails.instructions)
+      .field(
+        "ingredients",
+        '[{"item": "onion", "quantity": "medium (chopped)"}]'
+      );
+
+    // Assert
+    expect(response.status).toBe(201);
+    expect(response.body.status).toBe(201);
+    expect(response.body.recipe).toBeDefined();
+    expect(response.body.message).toBe("Successfully created a new recipe.");
   });
 
   it("should not create a new recipe if the an image file is not provided.", async () => {
@@ -50,17 +91,27 @@ describe("Recipe creation", () => {
     const response = await supertest(app)
       .post("/api/v1/recipe/create")
       .set({
-        Accept: "application/json",
+        Accept: "multipart/form-data",
         authorization: `Bearer ${token}`,
       })
-      .send(recipeDetails);
+      .field("title", recipeDetails.title)
+      .field("description", recipeDetails.description)
+      .field("time", recipeDetails.time)
+      .field("category", recipeDetails.category)
+      .field("cusine", recipeDetails.cusine)
+      .field("utensils", recipeDetails.utensils)
+      .field("instructions", recipeDetails.instructions)
+      .field(
+        "ingredients",
+        '[{"item": "onion", "quantity": "medium (chopped)"}]'
+      );
 
     // Assert
     expect(response.status).toBe(500);
     expect(response.body.status).toBe(500);
     expect(response.body.recipe).toBeUndefined();
     expect(response.body.errors[0]).toBe(
-      "Something went wrong. Could not create recipe."
+      "Please provide an image for the recipe."
     );
   });
 
@@ -81,12 +132,30 @@ describe("Recipe creation", () => {
     // Act
     const response = await supertest(app)
       .post("/api/v1/recipe/create")
-      .send(recipeDetails);
+      .set({
+        Accept: "multipart/form-data",
+      })
+      .attach("image", image)
+      .field("title", recipeDetails.title)
+      .field("description", recipeDetails.description)
+      .field("time", recipeDetails.time)
+      .field("category", recipeDetails.category)
+      .field("cusine", recipeDetails.cusine)
+      .field("utensils", recipeDetails.utensils)
+      .field("instructions", recipeDetails.instructions)
+      .field(
+        "ingredients",
+        '[{"item": "onion", "quantity": "medium (chopped)"}]'
+      );
 
     // Assert
     expect(response.status).toBe(401);
     expect(response.body.status).toBe(401);
     expect(response.body.recipe).toBeUndefined();
     expect(response.body.errors[0]).toBe("Authentication Failed");
+  });
+
+  afterAll(async () => {
+    await mongoose.connection.close();
   });
 });

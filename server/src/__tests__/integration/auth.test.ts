@@ -332,4 +332,8 @@ describe("The login flow", () => {
     expect(response.body.user).toBeUndefined();
     expect(response.body.errors).toBeDefined();
   });
+
+  afterAll(async () => {
+    await mongoose.connection.close();
+  });
 });

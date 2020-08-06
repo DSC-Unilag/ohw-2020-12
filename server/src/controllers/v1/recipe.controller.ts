@@ -22,16 +22,18 @@ const create = async (req: Request, res: Response) => {
     cusine,
     utensils,
     instructions,
-    ingredients,
   } = req.body;
 
-  // ingredients = Array.from(JSON.parse(ingredients));
+  let { ingredients } = req.body;
 
   if (!ingredients) {
     return res.status(400).json({
       status: 400,
       errors: ["Ingredients must be provided."],
     });
+  }
+  if (process.env.NODE_ENV === "test") {
+    ingredients = Array.from(JSON.parse(ingredients));
   }
 
   if (!Array.isArray(ingredients)) {
@@ -66,11 +68,16 @@ const create = async (req: Request, res: Response) => {
 
   let image: string;
 
-  if (req.file) {
-    const file = dataUri(req).content;
-    const result = await uploader.upload(file);
-    image = result.url;
+  if (!req.file) {
+    return res.status(500).json({
+      status: 500,
+      errors: ["Please provide an image for the recipe."],
+    });
   }
+
+  const file = dataUri(req).content;
+  const result = await uploader.upload(file);
+  image = result.url;
 
   const recipe: RecipeDocument = await Recipe.create({
     title,
