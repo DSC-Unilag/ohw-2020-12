@@ -15,6 +15,7 @@ Contributors(s):[Emmbrik](https://github.com/emmbrik)
 - Node.js
 - TypeScript
 - Express
+- Cloudinary
 - Jest
 - MongoDB
 - Mongoose
