@@ -33,7 +33,7 @@ Contributor(s): [Olusamimaths](https://github.com/Olusamimaths/)
 - Local Storage
 
 
-Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev](https://github.com/MirakleDdev)
+Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev](https://github.com/MirakleDdev), [Adekomi-Abdulhaleem](https://github.com/Adekomi-Abdulhaleem)
 
 ### Android and iOS Apps
 
