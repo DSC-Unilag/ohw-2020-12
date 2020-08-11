@@ -7,7 +7,7 @@ body{
 }
 .food-profile{
     width: 90%;
-    margin: 7em auto 4em auto;
+    margin: 3em auto 4em auto;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -93,7 +93,7 @@ body{
     width: 85%;
     margin: auto;
     margin-top: 5em;
-    line-height: 40px;
+    line-height: 20px;
 }
 .first-review, .part1{
     display: flex;
@@ -107,6 +107,8 @@ body{
 }
 .timeandlike{
     color: gray;
+}.ellipse8{
+    height: 6em;
 }
 
 

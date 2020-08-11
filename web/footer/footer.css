@@ -10,10 +10,11 @@ body{
 footer{
     background: #000102;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     color: #FFFFFF;
     padding: 30px;
+    margin-top: 30px;
 }
 footer p{
     cursor: pointer;
@@ -21,13 +22,13 @@ footer p{
 footer h2{
     margin-bottom: 30px;
 }
-.recipeesaver, .recipe, .more-info{
+.recipesaver, .recipe, .more-info{
     width: 20%;
 }
 .icons{
     display: flex;
     font-size: 30px;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 .fa{
     margin: 10px;
@@ -38,7 +39,7 @@ footer h2{
 }
 
 @media screen and (max-width: 800px){
-    .recipeesaver, .recipe, .more-info{
+    .recipesaver, .recipe, .more-info{
         width: 100%;
         padding-bottom: 50px;
     }
