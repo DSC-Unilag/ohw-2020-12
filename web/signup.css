@@ -11,7 +11,7 @@ form{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-image: url('loginimg.jpg');
+    background-image: url('img/loginimg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -37,21 +37,21 @@ form{
     color: #FFFFFF;
     
 }
-.Sign-in-to-recipe-saver{
+.Sign-up-to-recipe-saver{
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-size: 30px;
     line-height: 45px;
-    margin-bottom: 45px;
+    margin-bottom: 30px;
     color: #000000;
 }
 .right{
     width: 50%;
-    padding: 130px 0px 150px 150px;
+    padding: 100px 0px 90px 150px;
     background-color: #FFFFFF;
 }
-.Sign-in-with-google{
-    border-radius: 14px;
+.Sign-up-with-google{
+    border-radius: 10px;
     background-color: #3246FA;
     font-family: 'Poppins', sans-serif;
     font-style: medium;
@@ -60,46 +60,61 @@ form{
     border: 1px solid #3246FA;
     color: #F2F2F2;
     outline: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 420px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 60%;
     cursor: pointer;
 }
-.Sign-in-with-google:hover{
+.Sign-up-with-google:hover{
     background-color: #F2F2F2;
     color: #3246FA;
 }
-input{
+.email-address, .password{
     background-color: #DBDBDB;
-    border-radius: 14px;
-    width: 400px;
+    border-radius: 10px;
+    width: 60%;
     padding: 11px 10px;
     border: 1px solid #DBDBDB;
     outline: none;
     font-family: 'Poppins', sans-serif;
 }
-.first, .second{
-    margin: 15px 0px;
-}
-.sign-in{
+.create-account{
     background-color: #FE6D73;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
-    font-size: 20px;
+    font-size: 16px;
     color: #F2F2F2;
-    border-radius: 14px;
+    border-radius: 10px;
     padding: 6px 30px;
     border: 1px solid #FE6D73;
     outline: none;
-    width: 200px;
     margin: 30px 0px;
     cursor: pointer;
 }
-.sign-in:hover{
+.create-account:hover{
     background-color: #F2F2F2;
     color: #FE6D73;
 }
-@media screen and (max-width:800px){
+.first{
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-between;
+}
+.name, .username{
+    background-color: #DBDBDB;
+    border-radius: 10px;
+    width: 80%;
+    padding: 11px 10px;
+    border: 1px solid #DBDBDB;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+.first, .second, .third, .agreement{
+    margin: 10px 0px 0px 0px;
+}
+
+@media screen and (max-width: 800px){
     .left{
         width: 95%;
         padding-top: 50px;
@@ -109,21 +124,14 @@ input{
         width: 90%;
         padding: 20px;
     }
-    .Sign-in-with-google{
+    .Sign-up-with-google{
         font-size: 15px;
         padding: 9px 0px;
         margin-top: 12px;
         margin-bottom: 12px;
         width: 80%;
     }
-    input{
-        width: 80%;
-        padding: 11px 10px;
-    }
-    .first, .second{
-        margin: 12px 0px;
-    }
-    .sign-in{
+    .sign-up{
         font-size: 20px;
         padding: 6px 30px;
         width: 70%;
@@ -136,9 +144,21 @@ input{
         font-size: 25px;
         line-height: 40px;
     }
-    .Sign-in-to-recipe-saver{
+    .Sign-up-to-recipe-saver{
         font-size: 20px;
         line-height: 35px;
         margin-bottom: 35px;
+    }
+    .split2{
+        margin: 10px 0px 0px 0px;
+    }
+    .first{
+        width: 90%;
+    }
+    .name, .username{
+        width: 150%;
+    }
+    .email-address, .password{
+        width: 80%;
     }
 }

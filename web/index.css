@@ -64,7 +64,7 @@ a {color: black;
 }
 
 /* styling of the third section */
-.third {background-image: url(Media/heroimage.png);
+.third {background-image: url('img/heroimage.png');
         width: 100%;
         height: 50vh;
         background-attachment: fixed;
