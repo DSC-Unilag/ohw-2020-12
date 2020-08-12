@@ -11,7 +11,7 @@ form{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-image: url('./loginimg.jpg');
+    background-image: url('loginimg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
