@@ -208,6 +208,25 @@ margin-left: -200%;
                                 border: 1px solid #FE6D73;
                                 color: #FE6D73;
 }
+.ninth {display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 30px;
+}
+.ninth h2 {font-size: 28px;
+           text-align: center;
+}
+.ninth button {height: 40px;
+               width: 120px;
+               font-size: 12px;
+               margin-left: 100px;
+               background-color: #FE6D73;
+               color: white;
+               border: none;
+               border-radius: 10px;
+}
+.ninth button a {color: white;
+}
 
 
 /* Media queries for desktop size */
@@ -220,6 +239,8 @@ margin-left: -200%;
     }
     .first .desktop {display: flex;
         background-color: white;
+    }
+    .first .desktop #change {display: none;
     }
     .first .desktop .part_one ul {display: flex;
     }
@@ -331,4 +352,11 @@ margin-left: -200%;
                               margin-left: 20px;
                               color: white;
     }
+    .ninth button {width: 130px;
+     height: 50px;
+     font-size: 14px;
+     margin-top: -10px;
+}
+    
+
 }

@@ -1,0 +1,84 @@
+body {padding: 0;
+      margin: 0;
+      background: url(../web/Rectangle\ 2.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+.opacity {height: 100%;
+          width: 100%;
+          background-color: black;
+          opacity: .8;
+}
+.contentContainer {width: 300px;
+                   height: 570px;
+                   position: absolute;
+                   top: 20px;
+                   left: 35px;
+                   background-color: #c4c4c4;
+                   border-radius: 30px;
+                   display: flex;
+                   align-items: center;
+                   padding-left: 30px;
+}
+label {font-size: 24px;
+}
+label sub {font-size: 10px;
+}
+#input1, #input2 {width: 230px;
+                height: 50px;
+                border-radius: 10px;
+                background-color: white;
+                border: none;
+                font-size: 14px;
+                padding-left: 10px;
+}
+#input3 {width: 230px;
+        height: 120px;
+        border-radius: 10px;
+        background-color: white;
+        border: none;
+        text-align: center;
+}
+#input4 {display: none;
+}
+input[type="text"]:focus {border: 1px solid #FE6D73;
+}
+#stylephoto {width: 230px;
+             height: 120px;
+             border-radius: 10px;
+             background-color: white;
+             border: none;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+}
+.input1:focus {border: 1px solid #FE6D73;
+}
+#submitButton {position: absolute;
+               top: 600px;
+               left: 125px;
+               width: 120px;
+               height: 40px;
+               border-radius: 50px;
+               background-color: #FE6D73;
+               border: none;
+               font-size: 18px;
+}
+
+
+ @media (min-width: 1025px) { 
+    /*.contentContainer {width: 30%;
+                       height: 75vh;
+                       position: absolute;
+                       top: 50px;
+                       left: 35px;
+                       border-radius: 50px;
+    }*/
+    .contentContainer {top: 150px;
+                       left: 500px;
+    }
+    #submitButton {top: 740px;
+                   left: 585px;
+    }
+} 
