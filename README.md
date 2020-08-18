@@ -28,12 +28,14 @@ Contributor(s): [Olusamimaths](https://github.com/Olusamimaths/)
 
 ### Frontend Web App
 
+* https://vibrant-blackwell-d548d7.netlify.app
+
 - HTML/CSS
 - Javascript fetch api
 - Local Storage
 
 
-Contributor(s): [HERITAGEALABI](https://github.com/HERITAGEALABI), [MirakleDdev](https://github.com/MirakleDdev), [Adekomi-Abdulhaleem](https://github.com/Adekomi-Abdulhaleem)
+Contributor(s): [MirakleDdev](https://github.com/MirakleDdev), [Adekomi-Abdulhaleem](https://github.com/Adekomi-Abdulhaleem)
 
 ### Android and iOS Apps
 
