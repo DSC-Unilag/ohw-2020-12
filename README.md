@@ -28,7 +28,7 @@ Contributor(s): [Olusamimaths](https://github.com/Olusamimaths/)
 
 ### Frontend Web App
 
-* https://vibrant-blackwell-d548d7.netlify.app
+* https://brave-thompson-1be7a6.netlify.app/
 
 - HTML/CSS
 - Javascript fetch api
