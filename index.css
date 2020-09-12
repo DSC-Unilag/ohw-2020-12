@@ -8,7 +8,7 @@ a {color: black;
 .first .mobile {display: flex;
                 justify-content: space-around;
 }
-.first .mobile .part_two button {margin-top: 35px;
+.first .mobile .part_two button {margin-top: 25px;
                                  border: none;
                                  background-color: white;
                                  font-size: 28px;
@@ -84,14 +84,13 @@ a {color: black;
 .fourth .part_one, .fourth .part_two {flex: 1;
                                       margin: 5px;
 }
-.fourth .part_one img {height: 250px;
+.fourth .part_one img {height: 265px;
 }
-.fourth .part_one h5 {font-size: 12px;
+.fourth .part_one h5, .fourth .part_two h5  {font-size: 12px;
+                                             margin-top: 5px;
 }
 .fourth .part_two img {height: 115px;
                        width: 135px;
-}
-.fourth .part_two h5 {font-size: 12px;
 }
 
 /* styling of the fifth section */
@@ -200,7 +199,7 @@ margin-left: -200%;
                           font-size: 14px;
                           border-radius: 5px;
                           padding: 5px;
-                          margin-left: 20px;
+                          margin-left: 10px;
                           transition: .5s;
 }
 .eighth .part_two button:hover {background-color: white;
